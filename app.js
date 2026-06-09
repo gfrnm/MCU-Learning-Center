@@ -11,17 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnStartCbt = document.getElementById('btn-start-cbt');
     const btnCloseCbt = document.getElementById('btn-close-cbt');
 
-    // ==== TOAST NOTIFIKASI ====
+    // ================= TOAST NOTIFIKASI =================
     function showToast(message) {
-        if (navigator.vibrate) navigator.vibrate(50); 
-        
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
         
-        toast.className = `bg-gray-900/95 backdrop-blur-xl text-white px-5 py-3 rounded-[1.2rem] shadow-xl flex items-center justify-between toast-enter pointer-events-auto border border-gray-700`;
+        toast.className = `bg-slate-800 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center justify-between toast-enter border border-slate-700`;
         toast.innerHTML = `
-            <span class="text-[13px] font-medium">${message}</span>
-            <i class="fa-solid fa-check text-green-400"></i>
+            <span class="text-xs font-semibold">${message}</span>
+            <i class="fa-solid fa-check-circle text-green-400"></i>
         `;
         
         container.appendChild(toast);
@@ -31,85 +29,93 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // ==== SPLASH SCREEN & LOGIN ====
+    // ================= SPLASH SCREEN & LOGIN =================
     setTimeout(() => {
         splashScreen.classList.add('opacity-0');
         setTimeout(() => {
-            splashScreen.style.display = 'none';
-            viewLogin.classList.add('active');
+            splashScreen.classList.add('hidden');
         }, 500);
     }, 1500);
 
+    // Mencegah dua tampilan muncul bersamaan (Bug Fixing)
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault(); 
         const btn = loginForm.querySelector('button');
         const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memuat...';
         
         setTimeout(() => {
-            viewLogin.classList.remove('active');
+            // Sembunyikan halaman login sepenuhnya
+            viewLogin.classList.add('hidden');
+            viewLogin.classList.remove('flex');
+            
+            // Tampilkan halaman utama sepenuhnya
             viewMain.classList.remove('hidden');
-            viewMain.classList.add('active');
+            viewMain.classList.add('flex');
+            
             btn.innerHTML = originalText;
         }, 800);
     });
 
     document.getElementById('btn-logout').addEventListener('click', () => {
+        // Kembalikan ke halaman login
         viewMain.classList.add('hidden');
-        viewMain.classList.remove('active');
-        viewLogin.classList.add('active');
-        switchTab('tab-home');
+        viewMain.classList.remove('flex');
         
-        navButtons.forEach(b => {
-            b.classList.remove('active', 'text-gray-900');
-            b.classList.add('text-gray-400');
-        });
-        navButtons[0].classList.add('active');
-        navButtons[0].classList.remove('text-gray-400');
+        viewLogin.classList.remove('hidden');
+        viewLogin.classList.add('flex');
+        
+        // Reset tab ke posisi Home
+        switchTab('tab-home');
+        resetNavButtons(navButtons[0]);
     });
 
-    // ==== TABS NAVIGASI ====
+    // ================= NAVIGASI TAB BAWAH =================
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            if (navigator.vibrate) navigator.vibrate(10);
             const targetId = btn.getAttribute('data-target');
             switchTab(targetId);
-            
-            navButtons.forEach(b => {
-                b.classList.remove('active');
-                b.classList.add('text-gray-400');
-            });
-            btn.classList.add('active');
-            btn.classList.remove('text-gray-400');
+            resetNavButtons(btn);
         });
     });
 
     function switchTab(tabId) {
         tabContents.forEach(content => {
-            content.classList.remove('active');
+            content.classList.remove('block');
             content.classList.add('hidden');
         });
-        const targetTab = document.getElementById(tabId);
-        targetTab.classList.remove('hidden');
-        targetTab.classList.add('active');
+        document.getElementById(tabId).classList.remove('hidden');
+        document.getElementById(tabId).classList.add('block');
     }
 
-    // ==== CBT MODAL ====
+    function resetNavButtons(activeBtn) {
+        navButtons.forEach(b => {
+            b.classList.remove('active', 'text-blue-600');
+            b.classList.add('text-gray-400');
+        });
+        activeBtn.classList.add('active', 'text-blue-600');
+        activeBtn.classList.remove('text-gray-400');
+    }
+
+    // ================= MODAL TRYOUT (CBT) =================
     btnStartCbt.addEventListener('click', () => {
-        cbtModal.classList.add('modal-open');
+        cbtModal.classList.remove('hidden');
+        // Sedikit delay agar animasi transisi CSS terbaca
+        setTimeout(() => cbtModal.classList.add('modal-open'), 50);
     });
 
     btnCloseCbt.addEventListener('click', () => {
         cbtModal.classList.remove('modal-open');
+        setTimeout(() => cbtModal.classList.add('hidden'), 300);
     });
 
-    // ==== SIMULASI ABSEN ====
+    // ================= SIMULASI PRESENSI =================
     document.getElementById('btn-manual-absen').addEventListener('click', function() {
         const originalText = this.innerHTML;
         this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Membaca Lokasi...';
         setTimeout(() => {
             this.innerHTML = originalText;
-            showToast('Kehadiran berhasil dicatat!');
+            showToast('Presensi Anda berhasil tersimpan!');
         }, 1500);
     });
 });
