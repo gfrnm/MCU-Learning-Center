@@ -1,0 +1,77 @@
+/* Font dasar dan mematikan highlight biru khas browser saat tombol diklik */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+/* Bingkai HP untuk tampilan Desktop, Fullscreen jika di HP */
+.mobile-frame {
+    width: 100%;
+    height: 100dvh; /* Menggunakan dvh agar akurat dengan UI browser HP Safari/Chrome */
+    max-width: 414px; /* Lebar standar iPhone Max */
+}
+
+@media (max-width: 450px) {
+    .mobile-frame {
+        max-width: 100%;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Sembunyikan scrollbar bawaan tapi biarkan fungsi scroll jalan */
+.custom-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Animasi pindah tab */
+.view-section, .tab-content {
+    display: none;
+    animation: fadeScaleIn 0.25s ease-out forwards;
+}
+.view-section.active { display: flex; }
+.tab-content.active { display: block; }
+
+@keyframes fadeScaleIn {
+    0% { opacity: 0; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Bottom Navigation Active Styling */
+.nav-btn {
+    transition: all 0.2s;
+}
+.nav-btn.active i {
+    color: #2563eb; /* Warna biru saat aktif */
+}
+
+/* Animasi Scanner Lensa */
+@keyframes scan {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(180px); }
+    100% { transform: translateY(0); }
+}
+
+/* Modal CBT Swipe-up Animation */
+.modal-open {
+    transform: translateY(0) !important;
+}
+
+/* Native-like Toast */
+.toast-enter { animation: dropDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.toast-exit { animation: fadeOutUp 0.3s ease-in forwards; }
+
+@keyframes dropDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeOutUp {
+    to { transform: translateY(-20px); opacity: 0; }
+}
