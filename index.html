@@ -2,179 +2,275 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCU Learning Center</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MCU Mobile App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .mobile-screen { max-width: 430px; min-height: 100vh; }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+<body class="bg-gray-900 flex justify-center items-center min-h-screen sm:py-8">
 
-    <div class="mobile-screen w-full bg-white shadow-2xl relative flex flex-col overflow-hidden">
+    <!-- BINGKAI HP (Terlihat di Laptop, Fullscreen di HP) -->
+    <div class="mobile-frame bg-gray-50 relative overflow-hidden flex flex-col sm:rounded-[3rem] sm:border-[12px] sm:border-black sm:shadow-2xl">
         
-        <div id="login-page" class="flex-1 flex flex-col justify-center px-6 py-12">
-            <div class="text-center mb-8">
-                <div class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-200">
-                    <i class="fa-solid fa-graduation-cap text-3xl text-white"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-800">MCU Learning Center</h2>
-                <p class="text-sm text-gray-500 mt-1">Masuk untuk mengakses materi & tryout</p>
+        <!-- FAKE STATUS BAR (Ala iOS/Android) -->
+        <div class="h-8 w-full absolute top-0 left-0 right-0 z-[100] flex justify-between items-center px-6 text-[11px] font-semibold text-gray-800 pointer-events-none mix-blend-multiply">
+            <span id="os-clock">09:41</span>
+            <div class="flex items-center space-x-1.5">
+                <i class="fa-solid fa-signal text-[10px]"></i>
+                <i class="fa-solid fa-wifi text-[10px]"></i>
+                <i class="fa-solid fa-battery-full text-[12px]"></i>
             </div>
-
-            <form id="login-form" class="space-y-5">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">No. Handphone</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                            <i class="fa-solid fa-phone text-sm"></i>
-                        </span>
-                        <input type="tel" id="login-phone" placeholder="Contoh: 081234567xx" required
-                            class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Tanggal Lahir</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                            <i class="fa-solid fa-calendar text-sm"></i>
-                        </span>
-                        <input type="date" id="login-dob" required
-                            class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-all">
-                    </div>
-                </div>
-
-                <button type="submit" 
-                    class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm shadow-lg shadow-blue-200 transition-all transform active:scale-95">
-                    Masuk Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </form>
         </div>
 
-        <div id="dashboard-page" class="hidden flex-1 flex flex-col bg-gray-50 pb-20">
-            <div class="bg-blue-600 px-5 pt-8 pb-14 rounded-b-[2.5rem] shadow-md relative">
-                <div class="flex justify-between items-center mb-4">
+        <!-- ================= SPLASH SCREEN ================= -->
+        <div id="splash-screen" class="absolute inset-0 bg-blue-600 z-[90] flex flex-col items-center justify-center transition-opacity duration-500">
+            <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-2xl mb-6 animate-pulse">
+                <i class="fa-solid fa-user-nurse text-5xl text-blue-600"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-white tracking-tight">MCU Apps</h1>
+            <p class="text-blue-200 text-sm mt-2 font-medium">Uji Kompetensi Keperawatan</p>
+        </div>
+
+        <!-- ================= VIEW: LOGIN ================= -->
+        <div id="view-login" class="view-section h-full flex flex-col justify-end bg-cover bg-center relative z-10" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173ff9e5fe3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+            <!-- Overlay Gelap -->
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+            
+            <div class="relative z-20 px-6 pb-12 w-full">
+                <h2 class="text-3xl font-bold text-white mb-2">Mulai Belajar.</h2>
+                <p class="text-gray-300 text-sm mb-8">Akses ribuan soal UKOM dan materi eksklusif dari tim MCU.</p>
+                
+                <form id="login-form" class="space-y-4 bg-white/10 backdrop-blur-xl p-5 rounded-3xl border border-white/20">
                     <div>
-                        <p class="text-xs text-blue-100">Selamat datang,</p>
-                        <h3 id="user-name" class="text-lg font-bold text-white">Mahasiswa MCU</h3>
+                        <div class="bg-black/20 rounded-2xl flex items-center px-4 py-1 border border-white/10">
+                            <i class="fa-solid fa-phone text-gray-300 text-sm w-6"></i>
+                            <input type="tel" id="input-phone" placeholder="Nomor WhatsApp" required
+                                class="w-full bg-transparent text-white placeholder-gray-400 py-3 text-sm focus:outline-none">
+                        </div>
                     </div>
-                    <button id="logout-btn" class="w-9 h-9 bg-white/20 hover:bg-white/30 rounded-xl flex items-center justify-center text-white transition-all">
-                        <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                    <button type="submit" class="w-full py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-2xl text-sm shadow-lg shadow-blue-500/30 transition-all active:scale-95">
+                        Lanjutkan
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ================= VIEW: MAIN APP ================= -->
+        <div id="view-main" class="view-section hidden h-full flex-col relative z-10 bg-gray-50 pt-8">
+            
+            <div id="app-content" class="flex-1 overflow-y-auto pb-28 custom-scrollbar">
+                
+                <!-- TAB: HOME -->
+                <div id="tab-home" class="tab-content active px-5 pt-4">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex items-center space-x-3">
+                            <img src="https://ui-avatars.com/api/?name=Muhamad+Rivaldy&background=2563eb&color=fff" class="w-10 h-10 rounded-full shadow-sm border-2 border-white">
+                            <div>
+                                <p class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Selamat Pagi,</p>
+                                <h2 class="text-base font-bold text-gray-900">Muhamad Rivaldy</h2>
+                            </div>
+                        </div>
+                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 shadow-sm border border-gray-100 relative">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
+                        </button>
+                    </div>
+
+                    <!-- Card Progress Ala iOS -->
+                    <div class="bg-gray-900 rounded-[2rem] p-6 text-white shadow-xl shadow-gray-900/20 mb-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl opacity-30 -mr-10 -mt-10"></div>
+                        <h3 class="text-sm font-medium text-gray-400 mb-1">Target Kelulusan UKOM</h3>
+                        <div class="flex items-end space-x-2 mb-4">
+                            <span class="text-4xl font-black tracking-tighter">82</span>
+                            <span class="text-sm text-gray-400 font-medium mb-1">% Kompeten</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2 mb-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 82%"></div>
+                        </div>
+                        <p class="text-[10px] text-gray-400">Butuh 8% lagi untuk mencapai batas aman nasional.</p>
+                    </div>
+
+                    <!-- Horizontal Scroll (Kelas Terdekat) -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Live Class</h3>
+                        <div class="flex space-x-4 overflow-x-auto pb-4 custom-scrollbar snap-x">
+                            <!-- Card 1 -->
+                            <div class="min-w-[240px] snap-center bg-blue-50 border border-blue-100 p-4 rounded-3xl relative overflow-hidden">
+                                <span class="bg-blue-600 text-white text-[9px] font-bold px-2 py-1 rounded-lg uppercase absolute top-4 right-4">Malam Ini</span>
+                                <div class="w-10 h-10 bg-blue-200 text-blue-700 rounded-xl flex items-center justify-center mb-3">
+                                    <i class="fa-solid fa-video text-sm"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 text-sm mb-1">KMB & Gadar</h4>
+                                <p class="text-[11px] text-gray-500 mb-4">19:30 WIB • via Zoom</p>
+                                <button class="w-full bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl active:scale-95 transition">Gabung Kelas</button>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="min-w-[240px] snap-center bg-orange-50 border border-orange-100 p-4 rounded-3xl relative overflow-hidden">
+                                <span class="bg-orange-500 text-white text-[9px] font-bold px-2 py-1 rounded-lg uppercase absolute top-4 right-4">Besok</span>
+                                <div class="w-10 h-10 bg-orange-200 text-orange-700 rounded-xl flex items-center justify-center mb-3">
+                                    <i class="fa-solid fa-clipboard-question text-sm"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 text-sm mb-1">Bahas Tryout 1</h4>
+                                <p class="text-[11px] text-gray-500 mb-4">15:00 WIB • via Zoom</p>
+                                <button class="w-full bg-white text-orange-600 border border-orange-200 text-xs font-bold py-2.5 rounded-xl">Lihat Detail</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- List Modul Terbaru -->
+                    <div>
+                        <div class="flex justify-between items-end mb-3">
+                            <h3 class="text-lg font-bold text-gray-900">Materi Terbaru</h3>
+                            <a href="#" class="text-xs text-blue-600 font-semibold mb-1">Lihat Semua</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-2xl border border-gray-100 flex items-center justify-between shadow-sm active:bg-gray-50 transition">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center text-xl">
+                                        <i class="fa-regular fa-file-pdf"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-bold text-gray-900">Modul Keperawatan Anak</h5>
+                                        <p class="text-[11px] text-gray-500">20 MB • Diunggah hari ini</p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-down text-gray-400 bg-gray-50 w-8 h-8 rounded-full flex items-center justify-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: CBT (Tryout) -->
+                <div id="tab-cbt" class="tab-content hidden px-5 pt-4">
+                    <h2 class="text-2xl font-black text-gray-900 mb-6">Ujian CBT</h2>
+                    
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 shadow-sm text-center mb-6">
+                        <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                            <i class="fa-solid fa-laptop-medical"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1">Tryout Nasional Batch 1</h3>
+                        <p class="text-xs text-gray-500 mb-4 px-4">Simulasi 180 soal UKOM berbasis komputer sesuai standar nasional.</p>
+                        
+                        <div class="flex justify-center space-x-6 text-left mb-6 border-y border-gray-100 py-3">
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-semibold uppercase">Soal</p>
+                                <p class="font-bold text-gray-900">180 Butir</p>
+                            </div>
+                            <div class="w-px bg-gray-100"></div>
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-semibold uppercase">Waktu</p>
+                                <p class="font-bold text-gray-900">180 Menit</p>
+                            </div>
+                        </div>
+
+                        <button id="btn-start-cbt" class="w-full py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-lg shadow-gray-900/30 active:scale-95 transition-all text-sm">
+                            Mulai Simulasi Sekarang
+                        </button>
+                    </div>
+
+                    <h3 class="font-bold text-gray-900 mb-3 text-sm">Riwayat Ujian</h3>
+                    <div class="bg-white border border-gray-100 p-4 rounded-2xl flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-sm text-gray-900">Mini TO Maternitas</h4>
+                            <p class="text-[11px] text-gray-500">Nilai: 85 (Kompeten)</p>
+                        </div>
+                        <span class="bg-green-100 text-green-700 px-3 py-1.5 rounded-lg text-[10px] font-bold">Lulus</span>
+                    </div>
+                </div>
+
+                <!-- TAB: PRESENSI -->
+                <div id="tab-presensi" class="tab-content hidden px-5 pt-4">
+                    <h2 class="text-2xl font-black text-gray-900 mb-6">Presensi</h2>
+                    
+                    <!-- Scan Area Tiruan -->
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden">
+                        
+                        <!-- Animasi Scanner Lensa -->
+                        <div class="relative w-48 h-48 mb-6 border-2 border-dashed border-blue-300 rounded-3xl p-2">
+                            <div class="w-full h-full bg-gray-50 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                                <i class="fa-solid fa-qrcode text-6xl text-gray-300"></i>
+                                <!-- Garis Laser Scanner -->
+                                <div class="absolute top-0 left-0 w-full h-1 bg-blue-500 shadow-[0_0_15px_#3b82f6] animate-[scan_2s_ease-in-out_infinite]"></div>
+                            </div>
+                            <!-- Sudut Scanner -->
+                            <div class="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-blue-600 rounded-tl-lg"></div>
+                            <div class="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-blue-600 rounded-tr-lg"></div>
+                            <div class="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-blue-600 rounded-bl-lg"></div>
+                            <div class="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-blue-600 rounded-br-lg"></div>
+                        </div>
+
+                        <h3 class="font-bold text-gray-900 text-lg">Scan QR Code</h3>
+                        <p class="text-xs text-center text-gray-500 mt-2 mb-6">Arahkan kamera ke QR Code yang ditampilkan fasilitator di Zoom.</p>
+                        
+                        <button id="btn-manual-absen" class="w-full py-3.5 bg-blue-50 text-blue-600 font-bold rounded-2xl active:bg-blue-100 transition-all text-sm">
+                            Atau Gunakan Sensor Lokasi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAB: PROFILE -->
+                <div id="tab-profile" class="tab-content hidden px-5 pt-4">
+                    <h2 class="text-2xl font-black text-gray-900 mb-6">Akun Saya</h2>
+                    
+                    <div class="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center space-x-4 mb-8">
+                        <img src="https://ui-avatars.com/api/?name=Muhamad+Rivaldy&background=2563eb&color=fff&size=100" class="w-16 h-16 rounded-full">
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-lg">Muhamad Rivaldy</h3>
+                            <p class="text-xs text-gray-500 mb-1">0812-XXXX-XXXX</p>
+                            <span class="bg-blue-100 text-blue-700 text-[9px] font-bold px-2 py-0.5 rounded-md uppercase">Member Premium</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+                        <div class="p-4 flex items-center justify-between border-b border-gray-50 active:bg-gray-50">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600"><i class="fa-solid fa-user-pen text-xs"></i></div>
+                                <span class="text-sm font-medium text-gray-800">Edit Profil</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                        </div>
+                        <div class="p-4 flex items-center justify-between border-b border-gray-50 active:bg-gray-50">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600"><i class="fa-solid fa-headset text-xs"></i></div>
+                                <span class="text-sm font-medium text-gray-800">Hubungi Admin MCU</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <button id="btn-logout" class="w-full bg-red-50 text-red-600 font-bold py-4 rounded-2xl text-sm active:bg-red-100 transition">
+                        Keluar Akun
                     </button>
                 </div>
-                
-                <div class="absolute -bottom-10 left-5 right-5 bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
-                            <i class="fa-solid fa-book-open-reader"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-400">Progress Belajar</p>
-                            <p class="text-sm font-bold text-gray-800">12 / 24 Materi</p>
-                        </div>
-                    </div>
-                    <div class="w-12 h-12 flex items-center justify-center relative">
-                        <span class="text-xs font-bold text-blue-600">50%</span>
-                    </div>
-                </div>
             </div>
 
-            <div class="flex-1 px-5 pt-16 space-y-6 overflow-y-auto max-h-[calc(100vh-180px)]">
-                
-                <div class="bg-gradient-to-r align-middle from-amber-500 to-orange-500 p-4 rounded-2xl text-white shadow-sm flex justify-between items-center">
-                    <div>
-                        <span class="bg-white/20 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Kelas Terdekat</span>
-                        <h4 class="font-bold text-sm mt-1">Review UKOM Keperawatan</h4>
-                        <p class="text-xs text-orange-100 mt-0.5"><i class="fa-regular fa-clock mr-1"></i> Hari ini, 19:30 WIB</p>
+            <!-- BOTTOM NAVIGATION (FROSTED GLASS ALA iOS) -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-gray-200/50 px-6 py-4 pb-8 flex justify-between items-center z-50 rounded-b-[2.5rem]">
+                <button class="nav-btn active group" data-target="tab-home">
+                    <div class="flex flex-col items-center transition-transform group-active:scale-90">
+                        <i class="fa-solid fa-house text-[22px] mb-1"></i>
+                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">Home</span>
                     </div>
-                    <button class="bg-white text-orange-600 px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm">Masuk</button>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-center mb-3">
-                        <h4 class="font-bold text-gray-800 text-sm">Materi & Rekaman Terbaru</h4>
-                        <a href="#" class="text-xs text-blue-600 font-semibold">Lihat Semua</a>
+                </button>
+                <button class="nav-btn text-gray-400 group" data-target="tab-cbt">
+                    <div class="flex flex-col items-center transition-transform group-active:scale-90">
+                        <i class="fa-solid fa-laptop-medical text-[22px] mb-1"></i>
+                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">CBT</span>
                     </div>
-                    <div class="space-y-3">
-                        <div class="bg-white p-3 rounded-xl border border-gray-100 flex items-center justify-between hover:border-blue-200 transition-all">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
-                                    <i class="fa-solid fa-file-video text-lg"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-xs font-bold text-gray-800">Keperawatan Medikal Bedah (KMB)</h5>
-                                    <p class="text-[10px] text-gray-400">Rekaman • 2 Jam yang lalu</p>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
+                </button>
+                <button class="nav-btn text-gray-400 group" data-target="tab-presensi">
+                    <div class="flex flex-col items-center transition-transform group-active:scale-90 relative">
+                        <!-- Floating Action Button effect for Scanner -->
+                        <div class="absolute -top-10 bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40 border-4 border-gray-50">
+                            <i class="fa-solid fa-qrcode text-xl"></i>
                         </div>
-                        <div class="bg-white p-3 rounded-xl border border-gray-100 flex items-center justify-between hover:border-blue-200 transition-all">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-red-50 text-red-500 rounded-lg flex items-center justify-center">
-                                    <i class="fa-solid fa-file-pdf text-lg"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-xs font-bold text-gray-800">Modul Kisi-Kisi UKOM 2026</h5>
-                                    <p class="text-[10px] text-gray-400">PDF • Kemarin</p>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
-                        </div>
+                        <i class="fa-solid fa-qrcode text-[22px] mb-1 opacity-0"></i> <!-- Placeholder -->
+                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">Scan</span>
                     </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-2xl border border-gray-100">
-                    <h4 class="font-bold text-gray-800 text-sm mb-2"><i class="fa-solid fa-bullhorn text-red-500 mr-2"></i>Pengumuman</h4>
-                    <p class="text-xs text-gray-600 leading-relaxed">
-                        Bagi seluruh mahasiswa MCU tim kelas UKOM, diharapkan mengisi absensi otomatis di menu presensi sebelum kelas dimulai.
-                    </p>
-                </div>
-            </div>
-
-            <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-6 py-2 flex justify-between items-center text-gray-400">
-                <button class="flex flex-col items-center space-y-1 text-blue-600">
-                    <i class="fa-solid fa-house text-lg"></i>
-                    <span class="text-[10px] font-medium">Home</span>
                 </button>
-                <button class="flex flex-col items-center space-y-1 hover:text-blue-600 transition-all">
-                    <i class="fa-solid fa-book text-lg"></i>
-                    <span class="text-[10px] font-medium">Materi</span>
-                </button>
-                <button class="flex flex-col items-center space-y-1 hover:text-blue-600 transition-all">
-                    <i class="fa-solid fa-clipboard-user text-lg"></i>
-                    <span class="text-[10px] font-medium">Presensi</span>
-                </button>
-            </div>
-
-        </div>
-
-    </div>
-
-    <script>
-        const loginForm = document.getElementById('login-form');
-        const loginPage = document.getElementById('login-page');
-        const dashboardPage = document.getElementById('dashboard-page');
-        const logoutBtn = document.getElementById('logout-btn');
-
-        // Simulasi Login Frontend
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Animasi transisi tiruan
-            loginPage.classList.add('hidden');
-            dashboardPage.classList.remove('hidden');
-        });
-
-        // Simulasi Logout
-        logoutBtn.addEventListener('click', () => {
-            dashboardPage.classList.add('hidden');
-            loginPage.classList.remove('hidden');
-        });
-    </script>
-</body>
-</html>
-
+                <button class="nav-btn text-gray-400 group" data-target="tab-profile">
+                    <div class="flex flex-col items-center transition-transform group-active:scale-90">
+                        <i class="fa-regular fa-user text-[22px] mb-1"></i>
+                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">Profil<
