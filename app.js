@@ -1,16 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==== UPDATE OS CLOCK (Fake Status Bar) ====
-    function updateClock() {
-        const now = new Date();
-        let hours = now.getHours().toString().padStart(2, '0');
-        let minutes = now.getMinutes().toString().padStart(2, '0');
-        document.getElementById('os-clock').innerText = `${hours}:${minutes}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // ==== ELEMEN UI ====
     const splashScreen = document.getElementById('splash-screen');
     const viewLogin = document.getElementById('view-login');
     const viewMain = document.getElementById('view-main');
@@ -18,14 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabContents = document.querySelectorAll('.tab-content');
     
-    // CBT Elemen
     const cbtModal = document.getElementById('cbt-modal');
     const btnStartCbt = document.getElementById('btn-start-cbt');
     const btnCloseCbt = document.getElementById('btn-close-cbt');
 
-    // ==== FUNGSI TOAST NATIVE ====
+    // ==== TOAST NOTIFIKASI ====
     function showToast(message) {
-        // Hapus getaran jika didukung browser
         if (navigator.vibrate) navigator.vibrate(50); 
         
         const container = document.getElementById('toast-container');
@@ -44,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // ==== SPLASH SCREEN & LOGIN LOGIC ====
+    // ==== SPLASH SCREEN & LOGIN ====
     setTimeout(() => {
         splashScreen.classList.add('opacity-0');
         setTimeout(() => {
@@ -73,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         viewLogin.classList.add('active');
         switchTab('tab-home');
         
-        // Reset Nav Bawah
         navButtons.forEach(b => {
             b.classList.remove('active', 'text-gray-900');
             b.classList.add('text-gray-400');
@@ -82,12 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navButtons[0].classList.remove('text-gray-400');
     });
 
-    // ==== NAVIGASI BAWAH (TAB BAR) ====
+    // ==== TABS NAVIGASI ====
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Haptic Feedback Tiruan
             if (navigator.vibrate) navigator.vibrate(10);
-
             const targetId = btn.getAttribute('data-target');
             switchTab(targetId);
             
@@ -110,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         targetTab.classList.add('active');
     }
 
-    // ==== CBT MODAL (SWIPE UP NATIVE EFFECT) ====
+    // ==== CBT MODAL ====
     btnStartCbt.addEventListener('click', () => {
         cbtModal.classList.add('modal-open');
     });
@@ -119,14 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cbtModal.classList.remove('modal-open');
     });
 
-    // ==== SIMULASI PRESENSI ====
+    // ==== SIMULASI ABSEN ====
     document.getElementById('btn-manual-absen').addEventListener('click', function() {
         const originalText = this.innerHTML;
-        this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mendeteksi Lokasi...';
-        
+        this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Membaca Lokasi...';
         setTimeout(() => {
             this.innerHTML = originalText;
-            showToast('Kehadiran dicatat (Lat: -6.12, Long: 106.8)');
+            showToast('Kehadiran berhasil dicatat!');
         }, 1500);
     });
 });
