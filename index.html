@@ -3,225 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MCU Learning Center</title>
+    <title>MCU Mobile App</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 sm:bg-gray-200">
+<!-- Latar belakang gelap untuk Tablet/Laptop -->
+<body class="bg-slate-900 flex justify-center items-center min-h-screen">
 
-    <div class="w-full max-w-[480px] mx-auto bg-gray-50 h-[100dvh] flex flex-col relative shadow-2xl sm:border-x border-gray-300 overflow-hidden">
+    <!-- BINGKAI APLIKASI (Full di HP, Berbentuk HP di Tablet/Laptop) -->
+    <div class="w-full sm:w-[400px] h-[100dvh] sm:h-[85vh] sm:rounded-[2.5rem] bg-gray-50 flex flex-col relative shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)] overflow-hidden sm:border-[8px] sm:border-slate-800">
         
-        <div id="splash-screen" class="absolute inset-0 bg-blue-600 z-[90] flex flex-col items-center justify-center transition-opacity duration-500">
-            <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-2xl mb-6 animate-pulse">
+        <!-- ================= SPLASH SCREEN ================= -->
+        <div id="splash-screen" class="absolute inset-0 bg-blue-600 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
+            <div class="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-xl mb-6">
                 <i class="fa-solid fa-user-nurse text-5xl text-blue-600"></i>
             </div>
-            <h1 class="text-3xl font-bold text-white tracking-tight">MCU Apps</h1>
-            <p class="text-blue-200 text-sm mt-2 font-medium">Uji Kompetensi Keperawatan</p>
+            <h1 class="text-2xl font-bold text-white tracking-tight">MCU Apps</h1>
+            <p class="text-blue-200 text-xs mt-2 font-medium">Uji Kompetensi Keperawatan</p>
         </div>
 
-        <div id="view-login" class="view-section h-full flex flex-col justify-end bg-cover bg-center relative z-10" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173ff9e5fe3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
-            
-            <div class="relative z-20 px-6 pb-12 w-full">
+        <!-- ================= VIEW: LOGIN ================= -->
+        <!-- Gunakan Gradient agar selalu mulus di semua device, tidak bergantung gambar error -->
+        <div id="view-login" class="flex flex-col h-full bg-gradient-to-br from-slate-900 via-blue-900 to-blue-700 relative z-10 px-6 py-12 justify-end">
+            <div class="relative z-20 w-full mb-8">
+                <div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 border border-white/20">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-white"></i>
+                </div>
                 <h2 class="text-3xl font-bold text-white mb-2">Mulai Belajar.</h2>
-                <p class="text-gray-300 text-sm mb-8">Akses ribuan soal UKOM dan materi eksklusif dari tim MCU.</p>
+                <p class="text-blue-100 text-sm mb-8 leading-relaxed">Akses ribuan soal UKOM dan materi eksklusif langsung dari tim fasilitator MCU.</p>
                 
-                <form id="login-form" class="space-y-4 bg-white/10 backdrop-blur-xl p-5 rounded-3xl border border-white/20">
-                    <div>
-                        <div class="bg-black/20 rounded-2xl flex items-center px-4 py-1 border border-white/10">
-                            <i class="fa-solid fa-phone text-gray-300 text-sm w-6"></i>
-                            <input type="tel" id="input-phone" placeholder="Nomor WhatsApp" required
-                                class="w-full bg-transparent text-white placeholder-gray-400 py-3 text-sm focus:outline-none">
-                        </div>
+                <form id="login-form" class="space-y-4">
+                    <div class="bg-white/10 backdrop-blur-xl rounded-2xl flex items-center px-4 py-2 border border-white/20 focus-within:border-blue-400 transition-all">
+                        <i class="fa-solid fa-phone text-blue-200 text-sm w-6"></i>
+                        <input type="tel" id="input-phone" placeholder="Nomor WhatsApp" required
+                            class="w-full bg-transparent text-white placeholder-blue-200/60 py-3 text-sm focus:outline-none">
                     </div>
-                    <button type="submit" class="w-full py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-2xl text-sm shadow-lg shadow-blue-500/30 transition-all active:scale-95">
-                        Lanjutkan
+                    <button type="submit" class="w-full py-4 bg-blue-500 hover:bg-blue-400 text-white font-bold rounded-2xl text-sm shadow-lg shadow-blue-500/40 transition-all active:scale-95">
+                        Masuk Aplikasi
                     </button>
                 </form>
             </div>
         </div>
 
-        <div id="view-main" class="view-section hidden h-full flex-col relative z-10 bg-gray-50">
+        <!-- ================= VIEW: MAIN APP ================= -->
+        <!-- Awalnya disembunyikan menggunakan 'hidden' -->
+        <div id="view-main" class="hidden flex-col h-full relative z-10 bg-gray-50">
             
-            <div id="app-content" class="flex-1 overflow-y-auto pb-24 pt-6 custom-scrollbar">
+            <!-- Area Scrollable Konten -->
+            <div class="flex-1 overflow-y-auto pb-28 pt-6 custom-scrollbar">
                 
-                <div id="tab-home" class="tab-content active px-5">
+                <!-- TAB 1: HOME -->
+                <div id="tab-home" class="tab-content block px-5">
                     <div class="flex justify-between items-center mb-6">
                         <div class="flex items-center space-x-3">
-                            <img src="https://ui-avatars.com/api/?name=Muhamad+Rivaldy&background=2563eb&color=fff" class="w-10 h-10 rounded-full shadow-sm border-2 border-white">
+                            <img src="https://ui-avatars.com/api/?name=Muhamad+Rivaldy&background=2563eb&color=fff" class="w-10 h-10 rounded-full shadow-sm">
                             <div>
-                                <p class="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Selamat Datang,</p>
-                                <h2 class="text-base font-bold text-gray-900">Muhamad Rivaldy</h2>
+                                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Selamat Datang,</p>
+                                <h2 class="text-sm font-bold text-slate-800">Muhamad Rivaldy</h2>
                             </div>
                         </div>
-                        <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-600 shadow-sm border border-gray-100 relative">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-slate-600 shadow-sm border border-gray-100 relative">
                             <i class="fa-regular fa-bell"></i>
                             <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
-                        </button>
+                        </div>
                     </div>
 
-                    <div class="bg-gray-900 rounded-[2rem] p-6 text-white shadow-xl shadow-gray-900/20 mb-8 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl opacity-30 -mr-10 -mt-10"></div>
-                        <h3 class="text-sm font-medium text-gray-400 mb-1">Target Kelulusan UKOM</h3>
-                        <div class="flex items-end space-x-2 mb-4">
+                    <!-- Progress Card -->
+                    <div class="bg-slate-800 rounded-[2rem] p-6 text-white shadow-lg mb-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full filter blur-[40px] opacity-40 -mr-10 -mt-10"></div>
+                        <h3 class="text-xs font-medium text-slate-300 mb-1">Target Kelulusan UKOM</h3>
+                        <div class="flex items-end space-x-2 mb-4 relative z-10">
                             <span class="text-4xl font-black tracking-tighter">82</span>
-                            <span class="text-sm text-gray-400 font-medium mb-1">% Kompeten</span>
+                            <span class="text-sm text-slate-300 font-medium mb-1">% Kompeten</span>
                         </div>
-                        <div class="w-full bg-gray-800 rounded-full h-2 mb-2">
-                            <div class="bg-blue-500 h-2 rounded-full" style="width: 82%"></div>
+                        <div class="w-full bg-slate-700 rounded-full h-2 mb-2 relative z-10">
+                            <div class="bg-blue-400 h-2 rounded-full" style="width: 82%"></div>
                         </div>
-                        <p class="text-[10px] text-gray-400">Butuh 8% lagi untuk mencapai batas aman nasional.</p>
+                        <p class="text-[10px] text-slate-400 relative z-10">Butuh 8% lagi untuk mencapai batas aman.</p>
                     </div>
 
-                    <div class="mb-8">
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">Live Class</h3>
-                        <div class="flex space-x-4 overflow-x-auto pb-4 custom-scrollbar snap-x">
-                            <div class="min-w-[240px] snap-center bg-blue-50 border border-blue-100 p-4 rounded-3xl relative overflow-hidden">
-                                <span class="bg-blue-600 text-white text-[9px] font-bold px-2 py-1 rounded-lg uppercase absolute top-4 right-4">Malam Ini</span>
-                                <div class="w-10 h-10 bg-blue-200 text-blue-700 rounded-xl flex items-center justify-center mb-3">
-                                    <i class="fa-solid fa-video text-sm"></i>
-                                </div>
-                                <h4 class="font-bold text-gray-900 text-sm mb-1">KMB & Gadar</h4>
-                                <p class="text-[11px] text-gray-500 mb-4">19:30 WIB • via Zoom</p>
-                                <button class="w-full bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl active:scale-95 transition">Gabung Kelas</button>
-                            </div>
+                    <!-- List Modul -->
+                    <div class="mb-4">
+                        <div class="flex justify-between items-end mb-4">
+                            <h3 class="text-base font-bold text-slate-800">Materi Terkini</h3>
+                            <span class="text-xs text-blue-600 font-semibold cursor-pointer">Lihat Semua</span>
                         </div>
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between items-end mb-3">
-                            <h3 class="text-lg font-bold text-gray-900">Materi Terbaru</h3>
-                            <a href="#" class="text-xs text-blue-600 font-semibold mb-1">Lihat Semua</a>
-                        </div>
+                        
                         <div class="space-y-3">
-                            <div class="bg-white p-4 rounded-2xl border border-gray-100 flex items-center justify-between shadow-sm active:bg-gray-50 transition cursor-pointer">
+                            <div class="bg-white p-4 rounded-2xl border border-gray-100 flex items-center justify-between shadow-sm">
                                 <div class="flex items-center space-x-4">
-                                    <div class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center text-xl">
-                                        <i class="fa-regular fa-file-pdf"></i>
+                                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                                        <i class="fa-solid fa-video text-lg"></i>
                                     </div>
                                     <div>
-                                        <h5 class="text-sm font-bold text-gray-900">Modul Keperawatan Anak</h5>
-                                        <p class="text-[11px] text-gray-500">PDF • Diunggah hari ini</p>
+                                        <h5 class="text-xs font-bold text-slate-800">Rekaman KMB & Gadar</h5>
+                                        <p class="text-[10px] text-gray-500 mt-0.5">Video • 2 Jam lalu</p>
                                     </div>
                                 </div>
-                                <i class="fa-solid fa-arrow-down text-gray-400 bg-gray-50 w-8 h-8 rounded-full flex items-center justify-center"></i>
+                                <button class="w-8 h-8 bg-gray-50 rounded-full text-blue-600 flex items-center justify-center"><i class="fa-solid fa-play text-xs"></i></button>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl border border-gray-100 flex items-center justify-between shadow-sm">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center">
+                                        <i class="fa-solid fa-file-pdf text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-xs font-bold text-slate-800">Modul Keperawatan Anak</h5>
+                                        <p class="text-[10px] text-gray-500 mt-0.5">PDF • Hari ini</p>
+                                    </div>
+                                </div>
+                                <button class="w-8 h-8 bg-gray-50 rounded-full text-blue-600 flex items-center justify-center"><i class="fa-solid fa-download text-xs"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- TAB 2: CBT -->
                 <div id="tab-cbt" class="tab-content hidden px-5">
-                    <h2 class="text-2xl font-black text-gray-900 mb-6">Ujian CBT</h2>
-                    <div class="bg-white rounded-3xl border border-gray-100 p-5 shadow-sm text-center mb-6">
-                        <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                    <h2 class="text-xl font-bold text-slate-800 mb-6">Ujian CBT</h2>
+                    <div class="bg-white rounded-[2rem] border border-gray-100 p-6 shadow-sm text-center">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">
                             <i class="fa-solid fa-laptop-medical"></i>
                         </div>
-                        <h3 class="font-bold text-gray-900 text-lg mb-1">Tryout Nasional Batch 1</h3>
-                        <p class="text-xs text-gray-500 mb-4 px-4">Simulasi 180 soal UKOM berbasis komputer sesuai standar nasional.</p>
-                        <button id="btn-start-cbt" class="w-full py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all text-sm">
-                            Mulai Simulasi Sekarang
+                        <h3 class="font-bold text-slate-800 text-base mb-2">Simulasi UKOM 180 Soal</h3>
+                        <p class="text-xs text-gray-500 mb-6 px-2 leading-relaxed">Persiapkan diri Anda dengan mengerjakan soal format standar nasional.</p>
+                        <button id="btn-start-cbt" class="w-full py-4 bg-slate-800 text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all text-sm">
+                            Mulai Tryout
                         </button>
                     </div>
                 </div>
 
+                <!-- TAB 3: PRESENSI -->
                 <div id="tab-presensi" class="tab-content hidden px-5">
-                    <h2 class="text-2xl font-black text-gray-900 mb-6">Presensi</h2>
-                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden">
-                        <div class="relative w-48 h-48 mb-6 border-2 border-dashed border-blue-300 rounded-3xl p-2">
-                            <div class="w-full h-full bg-gray-50 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                                <i class="fa-solid fa-qrcode text-6xl text-gray-300"></i>
-                                <div class="absolute top-0 left-0 w-full h-1 bg-blue-500 shadow-[0_0_15px_#3b82f6] animate-[scan_2s_ease-in-out_infinite]"></div>
-                            </div>
+                    <h2 class="text-xl font-bold text-slate-800 mb-6">Presensi Kelas</h2>
+                    <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                        <div class="w-24 h-24 mb-6 bg-blue-50 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-qrcode text-4xl text-blue-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-900 text-lg">Scan QR Code</h3>
-                        <p class="text-xs text-center text-gray-500 mt-2 mb-6">Arahkan kamera ke QR Code di layar Zoom.</p>
-                        <button id="btn-manual-absen" class="w-full py-3.5 bg-blue-50 text-blue-600 font-bold rounded-2xl active:bg-blue-100 transition-all text-sm">
-                            Gunakan Sensor Lokasi
+                        <h3 class="font-bold text-slate-800 text-base mb-2">Scan Kehadiran</h3>
+                        <p class="text-xs text-gray-500 mb-6">Arahkan kamera HP Anda ke QR Code yang diberikan oleh tim instruktur MCU.</p>
+                        <button id="btn-manual-absen" class="w-full py-3.5 bg-blue-600 text-white font-bold rounded-2xl active:bg-blue-700 transition-all text-sm shadow-lg shadow-blue-200">
+                            Hadir via Lokasi
                         </button>
                     </div>
                 </div>
 
+                <!-- TAB 4: PROFILE -->
                 <div id="tab-profile" class="tab-content hidden px-5">
-                    <h2 class="text-2xl font-black text-gray-900 mb-6">Akun Saya</h2>
-                    <div class="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex items-center space-x-4 mb-8">
-                        <img src="https://ui-avatars.com/api/?name=Muhamad+Rivaldy&background=2563eb&color=fff&size=100" class="w-16 h-16 rounded-full">
+                    <h2 class="text-xl font-bold text-slate-800 mb-6">Akun Saya</h2>
+                    <div class="bg-white p-5 rounded-[2rem] border border-gray-100 shadow-sm flex items-center space-x-4 mb-6">
+                        <img src="https://ui-avatars.com/api/?name=Muhamad+Rivaldy&background=2563eb&color=fff&size=100" class="w-14 h-14 rounded-full">
                         <div>
-                            <h3 class="font-bold text-gray-900 text-lg">Muhamad Rivaldy</h3>
-                            <p class="text-xs text-gray-500 mb-1">0812-XXXX-XXXX</p>
-                            <span class="bg-blue-100 text-blue-700 text-[9px] font-bold px-2 py-0.5 rounded-md uppercase">Member Premium</span>
+                            <h3 class="font-bold text-slate-800 text-sm">Muhamad Rivaldy</h3>
+                            <p class="text-[10px] text-gray-500 mb-1">Tim MCU / Mahasiswa</p>
+                            <span class="bg-blue-50 text-blue-600 text-[9px] font-bold px-2 py-0.5 rounded-md uppercase border border-blue-100">Premium</span>
                         </div>
                     </div>
-                    <button id="btn-logout" class="w-full bg-red-50 text-red-600 font-bold py-4 rounded-2xl text-sm active:bg-red-100 transition">
-                        Keluar Akun
+                    <button id="btn-logout" class="w-full bg-red-50 text-red-600 font-bold py-4 rounded-2xl text-sm active:bg-red-100 transition border border-red-100">
+                        Keluar Aplikasi
                     </button>
                 </div>
             </div>
 
-            <div class="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-gray-200/50 px-6 py-4 flex justify-between items-center z-50">
-                <button class="nav-btn active group" data-target="tab-home">
+            <!-- BOTTOM NAVIGATION BAR -->
+            <div class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 px-6 py-4 flex justify-between items-center z-50">
+                <button class="nav-btn active group text-blue-600" data-target="tab-home">
                     <div class="flex flex-col items-center transition-transform group-active:scale-90">
-                        <i class="fa-solid fa-house text-[22px] mb-1"></i>
-                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">Home</span>
+                        <i class="fa-solid fa-house text-xl mb-1"></i>
+                        <span class="text-[10px] font-bold">Home</span>
                     </div>
                 </button>
                 <button class="nav-btn text-gray-400 group" data-target="tab-cbt">
                     <div class="flex flex-col items-center transition-transform group-active:scale-90">
-                        <i class="fa-solid fa-laptop-medical text-[22px] mb-1"></i>
-                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">CBT</span>
+                        <i class="fa-solid fa-laptop-medical text-xl mb-1"></i>
+                        <span class="text-[10px] font-bold">Tryout</span>
                     </div>
                 </button>
                 <button class="nav-btn text-gray-400 group" data-target="tab-presensi">
-                    <div class="flex flex-col items-center transition-transform group-active:scale-90 relative">
-                        <div class="absolute -top-10 bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/40 border-4 border-gray-50">
-                            <i class="fa-solid fa-qrcode text-xl"></i>
-                        </div>
-                        <i class="fa-solid fa-qrcode text-[22px] mb-1 opacity-0"></i> 
-                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">Scan</span>
+                    <div class="flex flex-col items-center transition-transform group-active:scale-90">
+                        <i class="fa-solid fa-camera text-xl mb-1"></i> 
+                        <span class="text-[10px] font-bold">Scan</span>
                     </div>
                 </button>
                 <button class="nav-btn text-gray-400 group" data-target="tab-profile">
                     <div class="flex flex-col items-center transition-transform group-active:scale-90">
-                        <i class="fa-regular fa-user text-[22px] mb-1"></i>
-                        <span class="text-[10px] font-semibold opacity-0 h-0 transition-all group-[.active]:opacity-100 group-[.active]:h-auto">Profil</span>
+                        <i class="fa-regular fa-user text-xl mb-1"></i>
+                        <span class="text-[10px] font-bold">Profil</span>
                     </div>
                 </button>
             </div>
         </div>
 
-        <div id="cbt-modal" class="absolute inset-0 bg-white z-[200] transform translate-y-full transition-transform duration-400 ease-in-out flex flex-col">
-            <div class="bg-white border-b border-gray-100 pt-6 pb-4 px-4 flex justify-between items-center shadow-sm z-10 relative">
-                <button id="btn-close-cbt" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 active:bg-gray-200">
-                    <i class="fa-solid fa-chevron-down"></i>
+        <!-- ================= CBT MODAL FULLSCREEN ================= -->
+        <div id="cbt-modal" class="absolute inset-0 bg-white z-[200] transform translate-y-full transition-transform duration-300 ease-in-out flex flex-col hidden">
+            <div class="bg-white border-b border-gray-100 pt-6 pb-4 px-4 flex justify-between items-center shadow-sm relative z-10">
+                <button id="btn-close-cbt" class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-slate-600 active:bg-gray-200">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-                <div class="text-center absolute left-0 right-0 pointer-events-none">
-                    <h3 class="text-sm font-bold text-gray-900">Tryout Nasional</h3>
-                    <p class="text-[10px] text-gray-500 font-mono"><i class="fa-regular fa-clock text-red-500 mr-1"></i> 179:58 Menit</p>
+                <div class="text-center">
+                    <h3 class="text-xs font-bold text-slate-800">Simulasi UKOM</h3>
+                    <p class="text-[10px] text-red-500 font-bold"><i class="fa-regular fa-clock mr-1"></i> 179:58</p>
                 </div>
-                <button class="w-10 h-10 text-blue-600 font-bold text-xs">Grid</button>
+                <div class="w-10"></div> <!-- Placeholder untuk balance -->
             </div>
 
             <div class="flex-1 overflow-y-auto bg-gray-50 p-5 custom-scrollbar pb-24">
-                <p class="text-[15px] text-gray-800 leading-relaxed mb-6 font-medium">
-                    Seorang laki-laki berusia 55 tahun dirawat di ruang ICVCU dengan keluhan nyeri dada yang menjalar ke lengan kiri. Hasil EKG menunjukkan ST elevasi di lead V1-V4. Manakah enzim jantung yang paling spesifik meningkat pada kondisi jam pertama?
-                </p>
+                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm mb-4">
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-2 mb-3">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md">Soal 1</span>
+                    </div>
+                    <p class="text-sm text-slate-800 leading-relaxed font-medium">
+                        Seorang pasien dirawat di ruang ICVCU dengan keluhan nyeri dada menjalar ke lengan kiri. EKG menunjukkan ST elevasi. Enzim jantung apa yang paling spesifik meningkat di jam pertama?
+                    </p>
+                </div>
                 <div class="space-y-3">
-                    <label class="flex items-center p-4 bg-white border border-gray-200 rounded-2xl cursor-pointer hover:bg-blue-50 transition">
-                        <span class="text-sm text-gray-700">A. CK-MB</span>
+                    <label class="flex items-center p-4 bg-white border border-gray-200 rounded-2xl cursor-pointer active:bg-blue-50 transition">
+                        <span class="text-sm text-slate-700">A. CK-MB</span>
                     </label>
                     <label class="flex items-center p-4 bg-blue-50 border border-blue-500 rounded-2xl cursor-pointer transition">
-                        <span class="text-sm text-gray-900 font-medium">B. Troponin T</span>
+                        <span class="text-sm text-slate-900 font-bold">B. Troponin T</span>
                     </label>
                 </div>
             </div>
 
-            <div class="bg-white border-t border-gray-200 p-4 flex justify-between space-x-3 absolute bottom-0 left-0 right-0">
+            <div class="bg-white border-t border-gray-100 p-4 flex justify-between space-x-3 absolute bottom-0 left-0 right-0">
                 <button class="w-14 h-14 bg-gray-100 text-gray-500 rounded-2xl flex items-center justify-center active:scale-95 transition">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
-                <button class="flex-1 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-500/30 active:scale-95 transition flex justify-center items-center">
-                    Selanjutnya <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
+                <button class="flex-1 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-500/30 active:scale-95 transition">
+                    Selanjutnya
                 </button>
             </div>
         </div>
