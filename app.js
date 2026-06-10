@@ -7,9 +7,8 @@ let dataMateri = [];
 let selectedProgram = "";
 let selectedBatch = "";
 
-// Ambil data dari Apps Script saat website dibuka
+// Load data dari Apps Script
 async function loadData() {
-
     try {
 
         const response = await fetch(API_URL);
@@ -18,36 +17,32 @@ async function loadData() {
         dataBatch = data.batch;
         dataMateri = data.materi;
 
-        console.log("Batch:", dataBatch);
-        console.log("Materi:", dataMateri);
+        console.log("Data berhasil dimuat");
 
-    } catch(err){
+    } catch (err) {
 
         console.error(err);
-
-        alert("Gagal mengambil data");
+        alert("Gagal mengambil data dari server");
 
     }
-
 }
 
 loadData();
 
-function pilihProgram(program){
+function pilihProgram(program) {
 
     selectedProgram = program;
 
-    document
-    .getElementById("portal")
-    .classList.remove("hidden");
+    const portal = document.getElementById("portal");
+    const programTitle = document.getElementById("programTitle");
+    const batchList = document.getElementById("batchList");
 
-    document
-    .getElementById("programTitle")
-    .innerText =
-    "Program " + program;
+    portal.classList.remove("hidden");
 
-    const batchProgram =
-    dataBatch.filter(
+    programTitle.innerText =
+        "Batch Program " + program;
+
+    const batchProgram = dataBatch.filter(
         item => item.program === program
     );
 
@@ -56,13 +51,11 @@ function pilihProgram(program){
     batchProgram.forEach(item => {
 
         html += `
-        <div class="program-card">
+        <div class="batch-card">
 
             <h3>${item.bulan}</h3>
 
-            <p>
-            Kelas Aktif
-            </p>
+            <p>Klik untuk membuka batch</p>
 
             <button
             onclick="pilihBatch('${item.bulan}')">
@@ -76,48 +69,49 @@ function pilihProgram(program){
 
     });
 
-    document
-    .getElementById("batchList")
-    .innerHTML = html;
+    batchList.innerHTML = html;
 
-    document
-    .getElementById("portal")
-    .scrollIntoView({
-        behavior:'smooth'
+    portal.scrollIntoView({
+        behavior: "smooth"
     });
-
 }
 
-function pilihBatch(bulan){
+function pilihBatch(bulan) {
 
     selectedBatch = bulan;
 
     document
-    .getElementById("kodeSection")
-    .classList.remove("hidden");
+        .getElementById("kodeSection")
+        .classList.remove("hidden");
 
     document
-    .getElementById("batchTitle")
-    .innerText =
-    "Kode Akses " + bulan;
+        .getElementById("batchTitle")
+        .innerText =
+        "Kode Akses - " + bulan;
 
+    document
+        .getElementById("kodeSection")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
 }
 
-function cekKode(){
+function cekKode() {
 
-    const kodeInput =
-    document.getElementById("kodeInput").value;
+    const kode =
+        document.getElementById("kodeInput")
+        .value
+        .trim();
 
-    const validBatch =
-    dataBatch.find(item =>
+    const valid = dataBatch.find(item =>
 
         item.program === selectedProgram &&
         item.bulan === selectedBatch &&
-        item.kode === kodeInput
+        item.kode === kode
 
     );
 
-    if(!validBatch){
+    if (!valid) {
 
         alert("Kode akses salah");
 
@@ -126,47 +120,46 @@ function cekKode(){
     }
 
     tampilkanMateri();
-
 }
 
-function tampilkanMateri(){
+function tampilkanMateri() {
+
+    const dashboard =
+        document.getElementById("dashboard");
+
+    dashboard.classList.remove("hidden");
 
     document
-    .getElementById("dashboard")
-    .classList.remove("hidden");
+        .getElementById("dashboardTitle")
+        .innerText =
+        selectedProgram +
+        " - " +
+        selectedBatch;
 
-    document
-    .getElementById("dashboardTitle")
-    .innerText =
-    selectedProgram +
-    " - " +
-    selectedBatch;
-
-    const materiBatch =
-    dataMateri.filter(item =>
+    const materi = dataMateri.filter(item =>
 
         item.program === selectedProgram &&
         item.bulan === selectedBatch
 
     );
 
-    let html = "";
-
-    materiBatch
-    .sort((a,b)=>
+    materi.sort((a, b) =>
         Number(a.pertemuan) -
         Number(b.pertemuan)
-    )
-    .forEach(item => {
+    );
+
+    let html = "";
+
+    materi.forEach(item => {
 
         html += `
-        <div class="faq-item">
+        <div class="timeline-item">
 
-            <p style="color:#2563eb;font-weight:bold">
+            <div class="tanggal">
 
                 📅 ${item.tanggal}
 
-            </p>
+            </div>
 
             <h3>
 
@@ -180,39 +173,37 @@ function tampilkanMateri(){
 
             </p>
 
-            <br>
+            <div class="btn-group">
 
-            <a
-            href="${item.ppt}"
-            target="_blank"
-            class="btn-primary">
+                <a
+                href="${item.ppt}"
+                target="_blank"
+                class="btn ppt">
 
-                📄 PPT
+                    PPT
 
-            </a>
+                </a>
 
-            <a
-            href="${item.rekaman}"
-            target="_blank"
-            class="btn-secondary">
+                <a
+                href="${item.rekaman}"
+                target="_blank"
+                class="btn video">
 
-                ▶ Rekaman
+                    Rekaman
 
-            </a>
+                </a>
+
+            </div>
 
         </div>
         `;
-
     });
 
     document
-    .getElementById("timeline")
-    .innerHTML = html;
+        .getElementById("timeline")
+        .innerHTML = html;
 
-    document
-    .getElementById("dashboard")
-    .scrollIntoView({
-        behavior:'smooth'
+    dashboard.scrollIntoView({
+        behavior: "smooth"
     });
-
 }
