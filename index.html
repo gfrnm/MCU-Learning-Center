@@ -1,276 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MCU Bimbel Learning Center</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-rel="stylesheet">
-
-</head>
-
-<body>
-
-<nav class="navbar">
-
-<div class="container nav-content">
-
-<div class="logo">
-<i class="fa-solid fa-graduation-cap"></i>
-MCU Learning Center
-</div>
-
-<ul>
-
-<li><a href="#tentang">Tentang</a></li>
-<li><a href="#akses">Cara Akses</a></li>
-<li><a href="#program">Program</a></li>
-<li><a href="#faq">FAQ</a></li>
-
-</ul>
-
-</div>
-
-</nav>
-
-<section class="hero">
-
-<div class="floating-circle c1"></div>
-<div class="floating-circle c2"></div>
-<div class="floating-circle c3"></div>
-
-<div class="hero-content">
-
-<span class="badge">
-
-Platform Pembelajaran Online
-
-</span>
-
-<h1>
-
-MCU Bimbel Learning Center
-
-</h1>
-
-<p>
-
-Portal resmi untuk mengakses materi,
-rekaman pembelajaran,
-dokumentasi kelas,
-dan try out peserta bimbingan belajar.
-
-</p>
-
-<div class="hero-buttons">
-
-<a href="#program" class="btn-primary">
-
-Masuk Portal
-
-</a>
-
-<a href="#tentang" class="btn-secondary">
-
-Pelajari Lebih Lanjut
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="stats">
-
-<div class="stat-card">
-
-<h2>500+</h2>
-
-<p>Peserta Alumni</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2>95%</h2>
-
-<p>Tingkat Kelulusan</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2>100+</h2>
-
-<p>Jam Rekaman</p>
-
-</div>
-
-</section>
-
-<section id="tentang" class="section">
-
-<div class="container">
-
-<h2>Tentang Kami</h2>
-
-<p>
-
-MCU Bimbel Learning Center merupakan platform
-belajar online yang membantu peserta mempersiapkan
-diri menghadapi Uji Kompetensi melalui materi,
-rekaman pembelajaran, pembahasan soal, dan tryout.
-
-</p>
-
-</div>
-
-</section>
-
-<section id="akses" class="section">
-
-<div class="container">
-
-<h2>Cara Mengakses Materi</h2>
-
-<div class="flow-grid">
-
-<div class="flow-card">
-
-<h3>01</h3>
-
-<p>Pilih Program</p>
-
-</div>
-
-<div class="flow-card">
-
-<h3>02</h3>
-
-<p>Pilih Batch</p>
-
-</div>
-
-<div class="flow-card">
-
-<h3>03</h3>
-
-<p>Masukkan Kode Akses</p>
-
-</div>
-
-<div class="flow-card">
-
-<h3>04</h3>
-
-<p>Akses Materi & Rekaman</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="program" class="section">
-
-<div class="container">
-
-<h2>Program Pembelajaran</h2>
-
-<div class="program-grid">
-
-<div class="program-card">
-
-<i class="fa-solid fa-user-nurse icon"></i>
-
-<h3>Program Perawat</h3>
-
-<p>
-
-Materi UKOM Perawat,
-rekaman kelas,
-tryout,
-dan pembahasan soal.
-
-</p>
-
-<button onclick="pilihProgram('Perawat')">
-
-Masuk Program
-
-</button>
-
-</div>
-
-<div class="program-card">
-
-<i class="fa-solid fa-user-doctor icon"></i>
-
-<h3>Program Bidan</h3>
-
-<p>
-
-Materi UKOM Bidan,
-rekaman pembelajaran,
-dan dokumentasi kelas.
-
-</p>
-
-<button onclick="pilihProgram('Bidan')">
-
-Masuk Program
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="kodeSection" class="section hidden">
-
-<div class="container">
-
-<div class="access-card">
-
-<h2 id="batchTitle"></h2>
-
-<p>
-
-Masukkan kode akses yang diberikan
-oleh admin untuk membuka materi.
-
-</p>
-
-<input
-type="text"
-id="kodeInput"
-placeholder="Masukkan Kode Akses">
-
-<button onclick="cekKode()">
-
-Masuk ke Dashboard
-
-</button>
-
-</div>
-
-</div>
-
-</section>
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <section id="dashboard" class="section hidden">
 
@@ -302,52 +32,49 @@ dan rekaman kelas.
 
 </section>
 
-<section id="faq" class="section">
+<!-- =========================
+     MODAL BATCH
+========================= -->
 
-<div class="container">
+<div id="batchModal" class="modal hidden">
 
-<h2>Pertanyaan Umum</h2>
+<div class="modal-content">
 
-<div class="faq-item">
+<span
+class="close-modal"
+onclick="tutupModal()">
 
-<h3>Bagaimana mendapatkan kode akses?</h3>
+&times;
+
+</span>
+
+<h2 id="programTitle">
+
+Pilih Batch
+
+</h2>
 
 <p>
 
-Kode akses diberikan oleh admin
-sesuai batch pembelajaran.
+Pilih batch pembelajaran yang ingin diakses
 
 </p>
 
-</div>
-
-<div class="faq-item">
-
-<h3>Apakah rekaman dapat ditonton ulang?</h3>
-
-<p>
-
-Ya, selama masa akses batch masih aktif.
-
-</p>
+<div
+id="batchList"
+class="batch-grid">
 
 </div>
 
 </div>
 
-</section>
+</div>
 
-...
-<section id="faq">
+<!-- =========================
+     MODAL KODE AKSES
+========================= -->
 
-...
-
-</section>
-
-<!-- MODAL BATCH -->
-
-  <div id="kodeModal"
-class="modal hidden">
+<div id="kodeModal" class="modal hidden">
 
 <div class="modal-content access-modal">
 
@@ -387,44 +114,13 @@ Masuk Kelas
 
 </div>
 
-<div id="batchModal"
-class="modal hidden">
-
-<div class="modal-content">
-
-<span
-class="close-modal"
-onclick="tutupModal()">
-
-&times;
-
-</span>
-
-<h2 id="programTitle">
-
-Program
-
-</h2>
-
-<p>
-
-Pilih batch pembelajaran yang ingin diakses
-
-</p>
-
-<div
-id="batchList"
-class="batch-grid">
-
-</div>
-
-</div>
-
-</div>
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
-  
-<footer>
+
+<div class="container">
 
 <h3>
 
@@ -445,6 +141,8 @@ target="_blank">
 Hubungi Admin
 
 </a>
+
+</div>
 
 </footer>
 
