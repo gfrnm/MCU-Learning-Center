@@ -831,7 +831,134 @@ popup .3s ease;
 
 .access-modal{
 
-max-width:550px;
+width:90%;
+max-width:500px;
+
+padding:45px;
+
+text-align:center;
+
+border-radius:30px;
+
+background:white;
+
+}
+
+.access-icon{
+
+width:90px;
+height:90px;
+
+margin:0 auto 25px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:32px;
+
+color:white;
+
+border-radius:25px;
+
+background:
+linear-gradient(
+135deg,
+#2563eb,
+#60a5fa
+);
+
+box-shadow:
+0 15px 35px rgba(37,99,235,.25);
+
+}
+
+.access-modal h2{
+
+font-size:34px;
+font-weight:800;
+
+margin-bottom:10px;
+
+}
+
+.access-modal p{
+
+font-size:16px;
+
+line-height:1.7;
+
+color:#64748b;
+
+margin-bottom:25px;
+
+}
+
+#kodeInput{
+
+width:100%;
+
+height:60px;
+
+padding:0 20px;
+
+font-size:16px;
+
+border-radius:18px;
+
+border:2px solid #e5e7eb;
+
+background:#f8fafc;
+
+margin-bottom:20px;
+
+}
+
+#kodeInput:focus{
+
+outline:none;
+
+border-color:#2563eb;
+
+box-shadow:
+0 0 0 5px rgba(37,99,235,.15);
+
+}
+
+.access-modal button{
+
+width:100%;
+
+height:60px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:17px;
+font-weight:700;
+
+color:white;
+
+cursor:pointer;
+
+background:
+linear-gradient(
+135deg,
+#2563eb,
+#3b82f6
+);
+
+transition:.3s;
+
+}
+
+.access-modal button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 15px 35px rgba(37,99,235,.3);
 
 }
 
