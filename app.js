@@ -1,3 +1,5 @@
+console.log("MCU APP LOADED");
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwVinCt06UJxDWd9yLcsHuWJWqrCDmBwEvQCxoLQ9MLCGVzFSXg93Bk9f0joIGJ3cC_/exec";
 
@@ -67,12 +69,12 @@ function pilihProgram(program) {
             <h3>${item.bulan}</h3>
 
             <button
-            onclick="pilihBatch('${item.bulan}')">
+type="button"
+onclick="pilihBatch('${item.bulan}')">
 
-                Pilih Batch
+    Pilih Batch
 
-            </button>
-
+</button>
         </div>
         `;
 
