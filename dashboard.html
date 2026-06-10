@@ -188,7 +188,71 @@ item.bulan === batch
 
 let html = "";
 
-materi.forEach(item => {
+materi.forEach((item,index) => {
+
+html += `
+
+<div class="timeline-row">
+
+    <div class="timeline-marker">
+
+        <div class="timeline-number">
+
+            ${(index + 1).toString().padStart(2,'0')}
+
+        </div>
+
+    </div>
+
+    <div class="timeline-item modern">
+
+        <div class="tanggal">
+
+            📅 ${item.tanggal}
+
+        </div>
+
+        <h3>
+
+            Pertemuan ${item.pertemuan}
+
+        </h3>
+
+        <p>
+
+            ${item.materi}
+
+        </p>
+
+        <div class="btn-group">
+
+            <a
+            href="${item.ppt}"
+            target="_blank"
+            class="btn ppt">
+
+                📄 PPT
+
+            </a>
+
+            <a
+            href="${item.rekaman}"
+            target="_blank"
+            class="btn video">
+
+                ▶ Rekaman
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+`;
+
+});
 
 html += `
 
