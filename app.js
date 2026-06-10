@@ -7,55 +7,64 @@ let dataMateri = [];
 let selectedProgram = "";
 let selectedBatch = "";
 
-// Load data dari Apps Script
+window.onload = async function () {
+    await loadData();
+};
+
 async function loadData() {
+
     try {
 
         const response = await fetch(API_URL);
+
         const data = await response.json();
 
-        dataBatch = data.batch;
-        dataMateri = data.materi;
+        console.log("API RESPONSE:", data);
 
-        console.log("Data berhasil dimuat");
+        dataBatch = data.batch || [];
+        dataMateri = data.materi || [];
 
-    } catch (err) {
+        console.log("Batch:", dataBatch);
+        console.log("Materi:", dataMateri);
 
-        console.error(err);
-        alert("Gagal mengambil data dari server");
+    } catch (error) {
+
+        console.error("ERROR LOAD API:", error);
+
+        alert("Gagal mengambil data API");
 
     }
+
 }
 
-loadData();
-
 function pilihProgram(program) {
+
+    console.log("PROGRAM:", program);
+    console.log("DATA BATCH:", dataBatch);
 
     selectedProgram = program;
 
     const portal = document.getElementById("portal");
-    const programTitle = document.getElementById("programTitle");
-    const batchList = document.getElementById("batchList");
 
     portal.classList.remove("hidden");
 
-    programTitle.innerText =
-        "Batch Program " + program;
+    document.getElementById("programTitle").innerText =
+        "Program " + program;
 
-    const batchProgram = dataBatch.filter(
+    const hasil = dataBatch.filter(
         item => item.program === program
     );
 
+    console.log("HASIL FILTER:", hasil);
+
     let html = "";
 
-    batchProgram.forEach(item => {
+    hasil.forEach(item => {
 
         html += `
         <div class="batch-card">
 
             <h3>${item.bulan}</h3>
-
-            <p>Klik untuk membuka batch</p>
 
             <button
             onclick="pilihBatch('${item.bulan}')">
@@ -69,31 +78,39 @@ function pilihProgram(program) {
 
     });
 
-    batchList.innerHTML = html;
+    if (html === "") {
 
-    portal.scrollIntoView({
-        behavior: "smooth"
-    });
+        html = `
+        <div class="batch-card">
+
+            <h3>Tidak ada batch ditemukan</h3>
+
+        </div>
+        `;
+    }
+
+    document.getElementById("batchList").innerHTML = html;
 }
 
 function pilihBatch(bulan) {
 
+    console.log("BATCH DIKLIK:", bulan);
+
     selectedBatch = bulan;
 
-    document
-        .getElementById("kodeSection")
-        .classList.remove("hidden");
+    const kodeSection =
+        document.getElementById("kodeSection");
 
-    document
-        .getElementById("batchTitle")
+    kodeSection.classList.remove("hidden");
+
+    document.getElementById("batchTitle")
         .innerText =
-        "Kode Akses - " + bulan;
+        "Kode Akses " + bulan;
 
-    document
-        .getElementById("kodeSection")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    kodeSection.scrollIntoView({
+        behavior: "smooth"
+    });
+
 }
 
 function cekKode() {
@@ -103,6 +120,8 @@ function cekKode() {
         .value
         .trim();
 
+    console.log("KODE:", kode);
+
     const valid = dataBatch.find(item =>
 
         item.program === selectedProgram &&
@@ -111,42 +130,35 @@ function cekKode() {
 
     );
 
+    console.log("VALID:", valid);
+
     if (!valid) {
 
-        alert("Kode akses salah");
+        alert("Kode salah");
 
         return;
 
     }
 
     tampilkanMateri();
+
 }
 
 function tampilkanMateri() {
 
-    const dashboard =
-        document.getElementById("dashboard");
-
-    dashboard.classList.remove("hidden");
-
     document
-        .getElementById("dashboardTitle")
-        .innerText =
-        selectedProgram +
-        " - " +
-        selectedBatch;
+        .getElementById("dashboard")
+        .classList.remove("hidden");
 
-    const materi = dataMateri.filter(item =>
+    const materi =
+        dataMateri.filter(item =>
 
-        item.program === selectedProgram &&
-        item.bulan === selectedBatch
+            item.program === selectedProgram &&
+            item.bulan === selectedBatch
 
-    );
+        );
 
-    materi.sort((a, b) =>
-        Number(a.pertemuan) -
-        Number(b.pertemuan)
-    );
+    console.log("MATERI:", materi);
 
     let html = "";
 
@@ -156,55 +168,24 @@ function tampilkanMateri() {
         <div class="timeline-item">
 
             <div class="tanggal">
-
-                📅 ${item.tanggal}
-
+                ${item.tanggal}
             </div>
 
             <h3>
-
                 Pertemuan ${item.pertemuan}
-
             </h3>
 
             <p>
-
                 ${item.materi}
-
             </p>
-
-            <div class="btn-group">
-
-                <a
-                href="${item.ppt}"
-                target="_blank"
-                class="btn ppt">
-
-                    PPT
-
-                </a>
-
-                <a
-                href="${item.rekaman}"
-                target="_blank"
-                class="btn video">
-
-                    Rekaman
-
-                </a>
-
-            </div>
 
         </div>
         `;
+
     });
 
     document
         .getElementById("timeline")
         .innerHTML = html;
 
-    dashboard.scrollIntoView({
-        behavior: "smooth"
-    });
 }
-
