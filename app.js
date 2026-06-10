@@ -154,10 +154,11 @@ function cekKode(){
 
     }
 
-    tutupModal();
-    tutupKodeModal();
+tutupModal();
+tutupKodeModal();
 
-    tampilkanMateri();
+window.location.href =
+`dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
 
 }
 
@@ -165,28 +166,7 @@ function cekKode(){
    DASHBOARD
 ========================= */
 
-function tampilkanMateri(){
 
-    document
-    .getElementById("dashboard")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("dashboardTitle")
-    .innerText =
-
-    selectedProgram +
-    " • " +
-    selectedBatch;
-
-    const materi =
-
-    dataMateri.filter(item =>
-
-        item.program === selectedProgram &&
-        item.bulan === selectedBatch
-
-    );
 
     let html = "";
 
