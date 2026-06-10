@@ -157,6 +157,12 @@ function cekKode(){
 tutupModal();
 tutupKodeModal();
 
+console.log(
+"REDIRECT:",
+selectedProgram,
+selectedBatch
+);
+
 window.location.href =
 `dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
 
