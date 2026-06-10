@@ -148,6 +148,92 @@ function cekKode() {
 
 function tampilkanMateri() {
 
+    console.log("PROGRAM:", selectedProgram);
+    console.log("BATCH:", selectedBatch);
+    console.log("SEMUA MATERI:", dataMateri);
+
+    const dashboard =
+        document.getElementById("dashboard");
+
+    dashboard.classList.remove("hidden");
+
+    const materi =
+        dataMateri.filter(item =>
+
+            item.program === selectedProgram &&
+            item.bulan === selectedBatch
+
+        );
+
+    console.log("HASIL FILTER:", materi);
+
+    let html = "";
+
+    if(materi.length === 0){
+
+        html = `
+        <div class="timeline-item">
+
+            <h3>
+            Belum ada materi ditemukan
+            </h3>
+
+        </div>
+        `;
+
+    } else {
+
+        materi.forEach(item => {
+
+            html += `
+            <div class="timeline-item">
+
+                <div class="tanggal">
+                    ${item.tanggal}
+                </div>
+
+                <h3>
+                    Pertemuan ${item.pertemuan}
+                </h3>
+
+                <p>
+                    ${item.materi}
+                </p>
+
+                <div class="btn-group">
+
+                    <a
+                    href="${item.ppt}"
+                    target="_blank"
+                    class="btn ppt">
+
+                        PPT
+
+                    </a>
+
+                    <a
+                    href="${item.rekaman}"
+                    target="_blank"
+                    class="btn video">
+
+                        Rekaman
+
+                    </a>
+
+                </div>
+
+            </div>
+            `;
+
+        });
+
+    }
+
+    document
+        .getElementById("timeline")
+        .innerHTML = html;
+}
+
     document
         .getElementById("dashboard")
         .classList.remove("hidden");
