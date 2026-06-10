@@ -241,9 +241,19 @@ Masuk Program
 
 <div class="container">
 
+<div class="portal-header">
+
 <h2 id="programTitle"></h2>
 
-<div id="batchList"></div>
+<p>
+Pilih batch pembelajaran yang ingin diakses.
+</p>
+
+</div>
+
+<div id="batchList" class="batch-grid">
+
+</div>
 
 </div>
 
@@ -253,17 +263,29 @@ Masuk Program
 
 <div class="container">
 
+<div class="access-card">
+
 <h2 id="batchTitle"></h2>
 
+<p>
+
+Masukkan kode akses yang diberikan
+oleh admin untuk membuka materi.
+
+</p>
+
 <input
+type="text"
 id="kodeInput"
 placeholder="Masukkan Kode Akses">
 
 <button onclick="cekKode()">
 
-Masuk
+Masuk ke Dashboard
 
 </button>
+
+</div>
 
 </div>
 
@@ -273,7 +295,19 @@ Masuk
 
 <div class="container">
 
+<div class="dashboard-header">
+
 <h2 id="dashboardTitle"></h2>
+
+<p>
+
+Dokumentasi pembelajaran,
+materi PPT,
+dan rekaman kelas.
+
+</p>
+
+</div>
 
 <div id="timeline"></div>
 
