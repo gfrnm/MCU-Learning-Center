@@ -1143,3 +1143,51 @@ box-shadow:
 0 15px 30px rgba(37,99,235,.3);
 
 }
+
+/* DASHBOARD PAGE */
+
+.dashboard-hero{
+
+padding:120px 0 60px;
+
+}
+
+.dashboard-card{
+
+background:white;
+padding:50px;
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card h1{
+
+font-size:42px;
+margin:20px 0;
+
+}
+
+.dashboard-card p{
+
+color:#64748b;
+
+}
+
+.back-btn{
+
+text-decoration:none;
+
+color:#2563eb;
+
+font-weight:600;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
