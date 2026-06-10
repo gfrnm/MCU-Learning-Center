@@ -1,43 +1,346 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bimbel UKOM Premium</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MCU Bimbel Learning Center</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+rel="stylesheet">
+
 </head>
+
 <body>
 
-<header class="hero">
-  <div class="overlay">
-    <h1>Bimbel UKOM Keperawatan</h1>
-    <p>Portal Materi, Rekaman, dan Pengumuman Mahasiswa</p>
-    <input type="text" id="search" placeholder="Cari materi...">
-  </div>
-</header>
+<nav class="navbar">
+
+<div class="container nav-content">
+
+<div class="logo">
+
+MCU Learning Center
+
+</div>
+
+<ul>
+
+<li><a href="#tentang">Tentang</a></li>
+<li><a href="#akses">Cara Akses</a></li>
+<li><a href="#program">Program</a></li>
+<li><a href="#faq">FAQ</a></li>
+
+</ul>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<span class="badge">
+
+Platform Pembelajaran Online
+
+</span>
+
+<h1>
+
+MCU Bimbel Learning Center
+
+</h1>
+
+<p>
+
+Portal resmi untuk mengakses materi,
+rekaman pembelajaran,
+dokumentasi kelas,
+dan try out peserta bimbingan belajar.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#program" class="btn-primary">
+
+Masuk Portal
+
+</a>
+
+<a href="#tentang" class="btn-secondary">
+
+Pelajari Lebih Lanjut
+
+</a>
+
+</div>
+
+</div>
+
+</section>
 
 <section class="stats">
-  <div class="stat"><h2 id="materiCount">0</h2><p>Materi</p></div>
-  <div class="stat"><h2>24/7</h2><p>Akses</p></div>
-  <div class="stat"><h2>HD</h2><p>Rekaman</p></div>
+
+<div class="stat-card">
+
+<h2>500+</h2>
+
+<p>Peserta Alumni</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>95%</h2>
+
+<p>Tingkat Kelulusan</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>100+</h2>
+
+<p>Jam Rekaman</p>
+
+</div>
+
 </section>
 
-<section class="container">
-  <h2>Materi Batch September 2026</h2>
-  <div id="materiGrid" class="grid"></div>
+<section id="tentang" class="section">
+
+<div class="container">
+
+<h2>Tentang Kami</h2>
+
+<p>
+
+MCU Bimbel Learning Center merupakan platform
+belajar online yang membantu peserta mempersiapkan
+diri menghadapi Uji Kompetensi melalui materi,
+rekaman pembelajaran, pembahasan soal, dan tryout.
+
+</p>
+
+</div>
+
 </section>
 
-<section class="container">
-  <h2>Pengumuman</h2>
-  <div class="notice">
-    Selamat datang di portal batch September 2026. Semua PPT berasal dari Google Drive dan rekaman berasal dari YouTube.
-  </div>
+<section id="akses" class="section">
+
+<div class="container">
+
+<h2>Cara Mengakses Materi</h2>
+
+<div class="flow-grid">
+
+<div class="flow-card">
+
+<h3>01</h3>
+
+<p>Pilih Program</p>
+
+</div>
+
+<div class="flow-card">
+
+<h3>02</h3>
+
+<p>Pilih Batch</p>
+
+</div>
+
+<div class="flow-card">
+
+<h3>03</h3>
+
+<p>Masukkan Kode Akses</p>
+
+</div>
+
+<div class="flow-card">
+
+<h3>04</h3>
+
+<p>Akses Materi & Rekaman</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="program" class="section">
+
+<div class="container">
+
+<h2>Program Pembelajaran</h2>
+
+<div class="program-grid">
+
+<div class="program-card">
+
+<i class="fa-solid fa-user-nurse icon"></i>
+
+<h3>Program Perawat</h3>
+
+<p>
+
+Materi UKOM Perawat,
+rekaman kelas,
+tryout,
+dan pembahasan soal.
+
+</p>
+
+<button onclick="pilihProgram('Perawat')">
+
+Masuk Program
+
+</button>
+
+</div>
+
+<div class="program-card">
+
+<i class="fa-solid fa-user-doctor icon"></i>
+
+<h3>Program Bidan</h3>
+
+<p>
+
+Materi UKOM Bidan,
+rekaman pembelajaran,
+dan dokumentasi kelas.
+
+</p>
+
+<button onclick="pilihProgram('Bidan')">
+
+Masuk Program
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="portal" class="section hidden">
+
+<div class="container">
+
+<h2 id="programTitle"></h2>
+
+<div id="batchList"></div>
+
+</div>
+
+</section>
+
+<section id="kodeSection" class="section hidden">
+
+<div class="container">
+
+<h2 id="batchTitle"></h2>
+
+<input
+id="kodeInput"
+placeholder="Masukkan Kode Akses">
+
+<button onclick="cekKode()">
+
+Masuk
+
+</button>
+
+</div>
+
+</section>
+
+<section id="dashboard" class="section hidden">
+
+<div class="container">
+
+<h2 id="dashboardTitle"></h2>
+
+<div id="timeline"></div>
+
+</div>
+
+</section>
+
+<section id="faq" class="section">
+
+<div class="container">
+
+<h2>Pertanyaan Umum</h2>
+
+<div class="faq-item">
+
+<h3>Bagaimana mendapatkan kode akses?</h3>
+
+<p>
+
+Kode akses diberikan oleh admin
+sesuai batch pembelajaran.
+
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>Apakah rekaman dapat ditonton ulang?</h3>
+
+<p>
+
+Ya, selama masa akses batch masih aktif.
+
+</p>
+
+</div>
+
+</div>
+
 </section>
 
 <footer>
-  © 2026 Bimbel UKOM Keperawatan
+
+<h3>
+
+MCU Bimbel Learning Center
+
+</h3>
+
+<p>
+
+Learning • Growth • Success
+
+</p>
+
+<a
+href="https://wa.me/6281234567890"
+target="_blank">
+
+Hubungi Admin
+
+</a>
+
 </footer>
 
 <script src="app.js"></script>
+
 </body>
 </html>
