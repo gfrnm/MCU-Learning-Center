@@ -240,28 +240,6 @@ Masuk Program
 
 </section>
 
-<section id="portal" class="section hidden">
-
-<div class="container">
-
-<div class="portal-header">
-
-<h2 id="programTitle"></h2>
-
-<p>
-Pilih batch pembelajaran yang ingin diakses.
-</p>
-
-</div>
-
-<div id="batchList" class="batch-grid">
-
-</div>
-
-</div>
-
-</section>
-
 <section id="kodeSection" class="section hidden">
 
 <div class="container">
@@ -359,6 +337,93 @@ Ya, selama masa akses batch masih aktif.
 
 </section>
 
+...
+<section id="faq">
+
+...
+
+</section>
+
+<!-- MODAL BATCH -->
+
+  <div id="kodeModal"
+class="modal hidden">
+
+<div class="modal-content access-modal">
+
+<span
+class="close-modal"
+onclick="tutupKodeModal()">
+
+&times;
+
+</span>
+
+<h2 id="batchTitle">
+
+Kode Akses
+
+</h2>
+
+<p>
+
+Masukkan kode akses yang diberikan admin
+
+</p>
+
+<input
+type="text"
+id="kodeInput"
+placeholder="Masukkan Kode Akses">
+
+<button
+onclick="cekKode()">
+
+Masuk Kelas
+
+</button>
+
+</div>
+
+</div>
+
+<div id="batchModal"
+class="modal hidden">
+
+<div class="modal-content">
+
+<span
+class="close-modal"
+onclick="tutupModal()">
+
+&times;
+
+</span>
+
+<h2 id="programTitle">
+
+Program
+
+</h2>
+
+<p>
+
+Pilih batch pembelajaran yang ingin diakses
+
+</p>
+
+<div
+id="batchList"
+class="batch-grid">
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+  
 <footer>
 
 <h3>
