@@ -208,8 +208,3 @@ function tampilkanMateri() {
     });
 }
 
-function pilihBatch(bulan){
-
-    alert("Batch dipilih: " + bulan);
-
-}
