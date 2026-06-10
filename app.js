@@ -207,3 +207,9 @@ function tampilkanMateri() {
         behavior: "smooth"
     });
 }
+
+function pilihBatch(bulan){
+
+    alert("Batch dipilih: " + bulan);
+
+}
