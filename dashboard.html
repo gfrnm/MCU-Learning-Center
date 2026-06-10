@@ -136,6 +136,31 @@ params.get("program");
 const batch =
 params.get("batch");
 
+console.log("PROGRAM:", program);
+console.log("BATCH:", batch);
+
+if(!program || !batch){
+
+    document
+    .getElementById("dashboardTitle")
+    .innerText =
+    "Data Tidak Ditemukan";
+
+    document
+    .getElementById("timeline")
+    .innerHTML = `
+    <div class="timeline-item">
+        <h3>Program atau Batch tidak ditemukan</h3>
+        <p>
+            Silakan kembali ke halaman utama
+            dan pilih program kembali.
+        </p>
+    </div>
+    `;
+
+    return;
+}
+
 document
 .getElementById("dashboardTitle")
 .innerText =
