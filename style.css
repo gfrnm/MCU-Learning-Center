@@ -1761,3 +1761,40 @@ font-size:70px;
 }
 
 }
+
+.toast{
+
+position:fixed;
+
+top:30px;
+right:30px;
+
+background:#ef4444;
+color:white;
+
+padding:16px 24px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-weight:600;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.2);
+
+transform:translateX(400px);
+
+transition:.4s;
+
+z-index:9999;
+
+}
+
+.toast.show{
+
+transform:translateX(0);
+
+}
