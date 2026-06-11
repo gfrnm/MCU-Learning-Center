@@ -146,9 +146,9 @@ function cekKode(){
 
     if(!valid){
 
-        alert(
-            "Kode akses salah"
-        );
+       showToast(
+"Kode akses salah"
+);
 
         return;
 
@@ -183,5 +183,24 @@ function tutupKodeModal(){
     document
     .getElementById("kodeModal")
     .classList.add("hidden");
+
+}
+
+function showToast(text){
+
+const toast =
+document.getElementById("toast");
+
+document
+.getElementById("toastText")
+.innerText = text;
+
+toast.classList.add("show");
+
+setTimeout(() => {
+
+toast.classList.remove("show");
+
+},3000);
 
 }
