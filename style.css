@@ -1398,3 +1398,89 @@ border-radius:12px;
 min-width:140px;
 
 }
+
+
+/* FAQ ACCORDION */
+
+.faq-item{
+
+background:white;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px;
+
+box-shadow:
+0 5px 25px rgba(0,0,0,.05);
+
+}
+
+.faq-question{
+
+width:100%;
+
+padding:25px 30px;
+
+border:none;
+background:white;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+font-size:22px;
+font-weight:700;
+
+cursor:pointer;
+
+color:#111827;
+
+}
+
+.faq-question span{
+
+text-align:left;
+
+}
+
+.faq-question i{
+
+transition:.3s;
+
+color:#2563eb;
+
+}
+
+.faq-answer{
+
+max-height:0;
+
+overflow:hidden;
+
+transition:
+all .35s ease;
+
+padding:0 30px;
+
+}
+
+.faq-answer p{
+
+padding-bottom:25px;
+
+color:#64748b;
+
+line-height:1.8;
+
+}
+
+.faq-item.active .faq-answer{
+
+max-height:200px;
+
+}
+
+.faq-item.active .faq-question i{
+
+transform:rotate(180deg);
+
+}
