@@ -86,7 +86,7 @@ function pilihProgram(program){
             <button
             onclick="pilihBatch('${item.bulan}')">
 
-                Masuk Batch
+                Akses Kelas
 
             </button>
 
