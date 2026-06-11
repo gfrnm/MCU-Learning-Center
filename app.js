@@ -147,7 +147,11 @@ function cekKode(){
     if(!valid){
 
        showToast(
-"Kode akses salah"
+"❌ Kode akses salah"
+);
+
+showToast(
+"✅ Berhasil masuk kelas"
 );
 
         return;
