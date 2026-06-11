@@ -60,7 +60,7 @@ function pilihProgram(program){
     document
     .getElementById("programTitle")
     .innerText =
-    "Batch " + program;
+    "Kelas " + program;
 
     const hasil =
     dataBatch.filter(item =>
