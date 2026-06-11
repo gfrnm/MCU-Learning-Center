@@ -419,5 +419,23 @@ Hubungi Admin
 
 <script src="app.js"></script>
 
+<script>
+
+document
+.querySelectorAll(".faq-question")
+.forEach(button => {
+
+button.addEventListener("click", () => {
+
+button
+.parentElement
+.classList.toggle("active");
+
+});
+
+});
+
+</script>
+     
 </body>
 </html>
