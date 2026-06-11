@@ -1548,19 +1548,17 @@ transform:rotate(180deg);
 
 .about-card{
 
-max-width:950px;
+max-width:1100px;
 margin:auto;
 
 background:white;
 
-padding:60px;
+padding:70px 80px;
 
 border-radius:30px;
 
 box-shadow:
 0 20px 60px rgba(0,0,0,.08);
-
-text-align:center;
 
 }
 
