@@ -1541,3 +1541,119 @@ transition:.3s;
 .faq-item.active .faq-question i{
 transform:rotate(180deg);
 }
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-card{
+
+max-width:950px;
+margin:auto;
+
+background:white;
+
+padding:60px;
+
+border-radius:30px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+.section-badge{
+
+display:inline-block;
+
+padding:10px 20px;
+
+background:#dbeafe;
+
+color:#2563eb;
+
+font-weight:600;
+
+border-radius:999px;
+
+margin-bottom:20px;
+
+}
+
+.about-card h2{
+
+font-size:42px;
+margin-bottom:25px;
+
+}
+
+.about-card p{
+
+font-size:18px;
+line-height:1.9;
+
+color:#64748b;
+
+max-width:750px;
+margin:auto;
+
+}
+
+.about-features{
+
+margin-top:40px;
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:20px;
+
+}
+
+.about-features div{
+
+background:#f8fafc;
+
+padding:18px;
+
+border-radius:15px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.about-features div:hover{
+
+transform:translateY(-5px);
+
+background:#eff6ff;
+
+}
+
+@media(max-width:768px){
+
+.about-card{
+
+padding:35px 25px;
+
+}
+
+.about-card h2{
+
+font-size:30px;
+
+}
+
+.about-features{
+
+grid-template-columns:1fr;
+
+}
+
+}
