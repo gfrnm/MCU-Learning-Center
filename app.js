@@ -7,20 +7,6 @@ let dataMateri = [];
 let selectedProgram = "";
 let selectedBatch = "";
 
-window.onload = async () => {
-
-    showToast(
-    "📚 Memuat data...",
-    "success"
-    );
-
-    await loadData();
-
-    console.log(
-    "Data siap digunakan"
-    );
-
-};
 
 async function loadData() {
 
