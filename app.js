@@ -7,6 +7,8 @@ let dataMateri = [];
 let selectedProgram = "";
 let selectedBatch = "";
 
+console.log("APP JS VERSI BARU");
+
 window.addEventListener("load", async () => {
 
     await loadData();
