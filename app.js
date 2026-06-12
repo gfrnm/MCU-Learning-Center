@@ -176,7 +176,7 @@ window.location.href =
 
 },1500);
 
-
+}
 
 function tutupModal(){
 
