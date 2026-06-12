@@ -60,6 +60,10 @@ async function loadData() {
 
 function pilihProgram(program){
 
+    console.log("TOMBOL DIKLIK");
+    console.log("Program:", program);
+    console.log("Data Batch:", dataBatch);
+
     selectedProgram = program;
 
     document
@@ -74,9 +78,17 @@ function pilihProgram(program){
     const hasil =
     dataBatch.filter(item =>
 
-        item.program === program
+        item.program
+        .trim()
+        .toLowerCase() ===
+
+        program
+        .trim()
+        .toLowerCase()
 
     );
+
+    console.log("Hasil Filter:", hasil);
 
     let html = "";
 
