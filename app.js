@@ -9,10 +9,8 @@ let selectedBatch = "";
 
 console.log("APP JS VERSI BARU");
 
-window.addEventListener("load", async () => {
-
-    await loadData();
-
+window.addEventListener("load", () => {
+    loadData();
 });
 
 async function loadData(){
