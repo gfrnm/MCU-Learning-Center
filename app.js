@@ -147,69 +147,94 @@ function pilihBatch(bulan){
 /* =========================
    KODE AKSES
 ========================= */
+async function cekKode(){
 
-function cekKode(){
+const kode =
+document
+.getElementById("kodeInput")
+.value
+.trim();
 
-    const kode =
+try{
 
-    document
-    .getElementById("kodeInput")
-    .value
-    .trim();
+const response =
+await fetch(API_URL,{
 
-    const valid =
+method:"POST",
 
-    dataBatch.find(item =>
+headers:{
+"Content-Type":"application/json"
+},
 
-        item.program === selectedProgram &&
-        item.bulan === selectedBatch &&
-        item.kode === kode
+body:JSON.stringify({
 
-    );
+program:selectedProgram,
+bulan:selectedBatch,
+kode:kode
 
-    if(!valid){
+})
 
-    showToast(
-    "❌ Kode akses salah",
-    "error"
-    );
+});
 
-    return;
+const result =
+await response.json();
+
+console.log(result);
+
+if(!result.success){
+
+showToast(
+"❌ Kode akses salah",
+"error"
+);
+
+return;
 
 }
+
+sessionStorage.setItem(
+"program",
+selectedProgram
+);
+
+sessionStorage.setItem(
+"batch",
+selectedBatch
+);
+
+sessionStorage.setItem(
+"materi",
+JSON.stringify(result.materi)
+);
+
+tutupModal();
+tutupKodeModal();
 
 showToast(
 "📚 Membuka kelas...",
 "success"
 );
 
-tutupModal();
-tutupKodeModal();
-
-console.log(
-"REDIRECT:",
-selectedProgram,
-selectedBatch
-);
-
-setTimeout(() => {
-
-sessionStorage.setItem(
-    "program",
-    selectedProgram
-);
-
-sessionStorage.setItem(
-    "batch",
-    selectedBatch
-);
+setTimeout(()=>{
 
 window.location.href =
 "dashboard.html";
 
 },1500);
 
-} 
+}
+catch(error){
+
+console.error(error);
+
+showToast(
+"❌ Gagal terhubung ke server",
+"error"
+);
+
+}
+
+}
 
 function tutupModal(){
 
