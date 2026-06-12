@@ -45,10 +45,14 @@ async function loadData(){
    PROGRAM
 ========================= */
 
-async function pilihProgram(program){
+async function pilihProgram(program, btn){
 
     console.log("TOMBOL DIKLIK");
     console.log("Program:", program);
+    btn.disabled = true;
+
+btn.innerHTML =
+'<i class="fa-solid fa-spinner fa-spin"></i> Memuat...';
 
     // kalau data belum masuk
     if(dataBatch.length === 0){
@@ -58,6 +62,11 @@ async function pilihProgram(program){
         await loadData();
 
     }
+
+    btn.disabled = false;
+
+btn.innerHTML =
+'Pilih Kelas';
 
     console.log("Data Batch:", dataBatch);
 
