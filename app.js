@@ -153,9 +153,20 @@ if(!valid){
 
 }
 
-    showToast(
-"✅ Berhasil masuk kelas"
+   showToast(
+"✅ Berhasil masuk kelas",
+"success"
 );
+
+tutupModal();
+tutupKodeModal();
+
+setTimeout(() => {
+
+window.location.href =
+`dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
+
+},1500);
 
 tutupModal();
 tutupKodeModal();
