@@ -143,41 +143,22 @@ function cekKode(){
         item.kode === kode
 
     );
-if(!valid){
+
+    if(!valid){
 
     showToast(
-    "❌ Kode akses salah"
+    "❌ Kode akses salah",
+    "error"
     );
 
     return;
 
 }
 
-   showToast(
-"✅ Berhasil masuk kelas",
+showToast(
+"📚 Membuka kelas...",
 "success"
 );
-
-tutupModal();
-tutupKodeModal();
-
-setTimeout(() => {
-
-window.location.href =
-`dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
-
-},1500);
-
-tutupModal();
-tutupKodeModal();
-
-setTimeout(() => {
-
-window.location.href =
-`dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
-
-},1000);
-   
 
 tutupModal();
 tutupKodeModal();
@@ -188,10 +169,12 @@ selectedProgram,
 selectedBatch
 );
 
+setTimeout(() => {
+
 window.location.href =
 `dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
 
-}
+},1500);
 
 
 
