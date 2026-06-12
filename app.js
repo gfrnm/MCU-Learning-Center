@@ -17,34 +17,29 @@ window.addEventListener("load", async () => {
 
 async function loadData() {
 
+    console.log("LOADDATA JALAN");
+
     try {
 
         const response =
         await fetch(API_URL);
 
-        console.log("STATUS:", response.status);
+        console.log(response);
 
         const data =
         await response.json();
 
-        console.log("DATA API:", data);
+        console.log(data);
 
         dataBatch =
         data.batch || [];
 
-        dataMateri =
-        data.materi || [];
-
-        console.log("BATCH:", dataBatch);
+        console.log(dataBatch);
 
     }
-
     catch(error){
 
-        console.error(
-        "ERROR FETCH:",
-        error
-        );
+        console.log(error);
 
     }
 
