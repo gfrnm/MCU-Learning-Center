@@ -172,10 +172,11 @@ program + " - " + batch;
 
 try {
 
+const response =
+await fetch(API_URL);
+
 const data =
-JSON.parse(
-localStorage.getItem("allData")
-);
+await response.json();
 
 console.log("DATA API:", data);
 
