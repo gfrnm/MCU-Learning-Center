@@ -206,8 +206,14 @@ background:#2563eb;
 color:white;
 border-radius:10px;
 cursor:pointer;
+transition:.3s;
 }
 
+.program-card button:disabled{
+opacity:.8;
+cursor:not-allowed;
+transform:scale(.98);
+}
 /* =========================
    PORTAL
 ========================= */
