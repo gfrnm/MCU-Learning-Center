@@ -20,8 +20,12 @@ async function loadData() {
         const response =
         await fetch(API_URL);
 
+        console.log("STATUS:", response.status);
+
         const data =
         await response.json();
+
+        console.log("DATA API:", data);
 
         dataBatch =
         data.batch || [];
@@ -29,16 +33,15 @@ async function loadData() {
         dataMateri =
         data.materi || [];
 
-        console.log("Data Loaded");
+        console.log("BATCH:", dataBatch);
 
     }
 
     catch(error){
 
-        console.error(error);
-
-        alert(
-        "Gagal mengambil data"
+        console.error(
+        "ERROR FETCH:",
+        error
         );
 
     }
