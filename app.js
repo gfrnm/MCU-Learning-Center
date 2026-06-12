@@ -200,7 +200,7 @@ function tutupKodeModal(){
 
 }
 
-function showToast(text){
+function showToast(text,type){
 
 const toast =
 document.getElementById("toast");
@@ -208,6 +208,13 @@ document.getElementById("toast");
 document
 .getElementById("toastText")
 .innerText = text;
+
+toast.classList.remove(
+"success",
+"error"
+);
+
+toast.classList.add(type);
 
 toast.classList.add("show");
 
