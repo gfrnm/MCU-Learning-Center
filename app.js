@@ -162,21 +162,6 @@ await fetch(API_URL,{
 
 method:"POST",
 
-const response =
-await fetch(API_URL,{
-
-method:"POST",
-
-body:JSON.stringify({
-
-program:selectedProgram,
-bulan:selectedBatch,
-kode:kode
-
-})
-
-});
-
 body:JSON.stringify({
 
 program:selectedProgram,
