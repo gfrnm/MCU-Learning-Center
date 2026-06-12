@@ -31,12 +31,6 @@ async function loadData(){
         dataMateri =
         data.materi || [];
 
-        // SIMPAN KE BROWSER
-        localStorage.setItem(
-            "allData",
-            JSON.stringify(data)
-        );
-
         console.timeEnd("LOAD DATA");
 
     }catch(error){
@@ -200,8 +194,18 @@ selectedBatch
 
 setTimeout(() => {
 
+sessionStorage.setItem(
+    "program",
+    selectedProgram
+);
+
+sessionStorage.setItem(
+    "batch",
+    selectedBatch
+);
+
 window.location.href =
-`dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
+"dashboard.html";
 
 },1500);
 
