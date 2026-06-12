@@ -9,7 +9,16 @@ let selectedBatch = "";
 
 window.onload = async () => {
 
+    showToast(
+    "📚 Memuat data...",
+    "success"
+    );
+
     await loadData();
+
+    console.log(
+    "Data siap digunakan"
+    );
 
 };
 
