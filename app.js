@@ -199,6 +199,9 @@ function showToast(text,type){
 const toast =
 document.getElementById("toast");
 
+const icon =
+document.getElementById("toastIcon");
+
 document
 .getElementById("toastText")
 .innerText = text;
@@ -207,6 +210,18 @@ toast.classList.remove(
 "success",
 "error"
 );
+
+if(type === "success"){
+
+icon.className =
+"fa-solid fa-circle-check";
+
+}else{
+
+icon.className =
+"fa-solid fa-circle-xmark";
+
+}
 
 toast.classList.add(type);
 
