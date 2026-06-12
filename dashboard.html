@@ -139,40 +139,30 @@ const API_URL =
 
 async function loadDashboard() {
 
-const params =
-new URLSearchParams(
-window.location.search
+const program =
+sessionStorage.getItem(
+"program"
 );
 
-const program =
-params.get("program");
-
 const batch =
-params.get("batch");
+sessionStorage.getItem(
+"batch"
+);
 
 console.log("PROGRAM:", program);
 console.log("BATCH:", batch);
 
 if(!program || !batch){
 
-    document
-    .getElementById("dashboardTitle")
-    .innerText =
-    "Data Tidak Ditemukan";
+    alert(
+    "Sesi akses berakhir, silakan login kembali"
+    );
 
-    document
-    .getElementById("timeline")
-    .innerHTML = `
-    <div class="timeline-item">
-        <h3>Program atau Batch tidak ditemukan</h3>
-        <p>
-            Silakan kembali ke halaman utama
-            dan pilih program kembali.
-        </p>
-    </div>
-    `;
+    window.location.href =
+    "index.html";
 
     return;
+
 }
 
 document
@@ -196,7 +186,7 @@ item.program === program &&
 item.bulan === batch
 
 );
-
+    
 console.log("MATERI:", materi);
 
 if(materi.length === 0){
