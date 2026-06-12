@@ -7,22 +7,27 @@ let dataMateri = [];
 let selectedProgram = "";
 let selectedBatch = "";
 
+window.addEventListener("load", async () => {
+
+    await loadData();
+
+});
 
 async function loadData() {
 
     try {
 
         const response =
-            await fetch(API_URL);
+        await fetch(API_URL);
 
         const data =
-            await response.json();
+        await response.json();
 
         dataBatch =
-            data.batch || [];
+        data.batch || [];
 
         dataMateri =
-            data.materi || [];
+        data.materi || [];
 
         console.log("Data Loaded");
 
@@ -33,7 +38,7 @@ async function loadData() {
         console.error(error);
 
         alert(
-            "Gagal mengambil data"
+        "Gagal mengambil data"
         );
 
     }
