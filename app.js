@@ -147,7 +147,7 @@ function pilihBatch(bulan){
 /* =========================
    KODE AKSES
 ========================= */
-async function cekKode(){
+function cekKode(){
 
 const kode =
 document
@@ -155,27 +155,19 @@ document
 .value
 .trim();
 
-try{
+const url =
+API_URL +
+"?action=cek" +
+"&program=" +
+encodeURIComponent(selectedProgram) +
+"&bulan=" +
+encodeURIComponent(selectedBatch) +
+"&kode=" +
+encodeURIComponent(kode);
 
-const response =
-await fetch(API_URL,{
-
-method:"POST",
-
-body:JSON.stringify({
-
-program:selectedProgram,
-bulan:selectedBatch,
-kode:kode
-
-})
-
-});
-
-const result =
-await response.json();
-
-console.log(result);
+fetch(url)
+.then(res => res.json())
+.then(result => {
 
 if(!result.success){
 
@@ -218,8 +210,8 @@ window.location.href =
 
 },1500);
 
-}
-catch(error){
+})
+.catch(error => {
 
 console.error(error);
 
@@ -228,7 +220,7 @@ showToast(
 "error"
 );
 
-}
+});
 
 }
 
