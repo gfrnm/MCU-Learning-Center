@@ -143,20 +143,30 @@ function cekKode(){
         item.kode === kode
 
     );
+if(!valid){
 
-    if(!valid){
+    showToast(
+    "❌ Kode akses salah"
+    );
 
-       showToast(
-"❌ Kode akses salah"
-);
+    return;
 
-showToast(
+}
+
+    showToast(
 "✅ Berhasil masuk kelas"
 );
 
-        return;
+tutupModal();
+tutupKodeModal();
 
-    }
+setTimeout(() => {
+
+window.location.href =
+`dashboard.html?program=${encodeURIComponent(selectedProgram)}&batch=${encodeURIComponent(selectedBatch)}`;
+
+},1000);
+   
 
 tutupModal();
 tutupKodeModal();
