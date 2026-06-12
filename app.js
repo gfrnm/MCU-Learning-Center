@@ -162,9 +162,20 @@ await fetch(API_URL,{
 
 method:"POST",
 
-headers:{
-"Content-Type":"application/json"
-},
+const response =
+await fetch(API_URL,{
+
+method:"POST",
+
+body:JSON.stringify({
+
+program:selectedProgram,
+bulan:selectedBatch,
+kode:kode
+
+})
+
+});
 
 body:JSON.stringify({
 
