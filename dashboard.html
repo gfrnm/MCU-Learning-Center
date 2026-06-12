@@ -188,6 +188,8 @@ await fetch(API_URL);
 const data =
 await response.json();
 
+console.log("DATA API:", data);
+
 const materi =
 data.materi.filter(item =>
 
@@ -195,6 +197,28 @@ item.program === program &&
 item.bulan === batch
 
 );
+
+console.log("MATERI:", materi);
+
+if(materi.length === 0){
+
+document
+.getElementById("timeline")
+.innerHTML =
+`
+<div style="text-align:center;padding:40px;">
+    Belum ada materi untuk batch ini
+</div>
+`;
+
+document
+.getElementById("loadingScreen")
+.style.display =
+"none";
+
+return;
+
+}
 
 let html = "";
 
@@ -271,10 +295,20 @@ document
 .innerHTML =
 html;
 
+document
+.getElementById("loadingScreen")
+.style.display =
+"none";
+
 }
 catch(error){
 
 console.error(error);
+
+document
+.getElementById("loadingScreen")
+.style.display =
+"none";
 
 }
 
