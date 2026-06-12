@@ -45,10 +45,20 @@ async function loadData(){
    PROGRAM
 ========================= */
 
-function pilihProgram(program){
+async function pilihProgram(program){
 
     console.log("TOMBOL DIKLIK");
     console.log("Program:", program);
+
+    // kalau data belum masuk
+    if(dataBatch.length === 0){
+
+        console.log("Data belum siap, load ulang...");
+
+        await loadData();
+
+    }
+
     console.log("Data Batch:", dataBatch);
 
     selectedProgram = program;
@@ -85,11 +95,7 @@ function pilihProgram(program){
 
         <div class="batch-card">
 
-            <h3>
-
-                ${item.bulan}
-
-            </h3>
+            <h3>${item.bulan}</h3>
 
             <button
             onclick="pilihBatch('${item.bulan}')">
