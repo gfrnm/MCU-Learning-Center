@@ -31,6 +31,12 @@ async function loadData(){
         dataMateri =
         data.materi || [];
 
+        // SIMPAN KE BROWSER
+        localStorage.setItem(
+            "allData",
+            JSON.stringify(data)
+        );
+
         console.timeEnd("LOAD DATA");
 
     }catch(error){
