@@ -15,31 +15,29 @@ window.addEventListener("load", async () => {
 
 });
 
-async function loadData() {
+async function loadData(){
 
-    console.log("LOADDATA JALAN");
+    console.time("LOAD DATA");
 
-    try {
+    try{
 
         const response =
         await fetch(API_URL);
 
-        console.log(response);
-
         const data =
         await response.json();
-
-        console.log(data);
 
         dataBatch =
         data.batch || [];
 
-        console.log(dataBatch);
+        dataMateri =
+        data.materi || [];
 
-    }
-    catch(error){
+        console.timeEnd("LOAD DATA");
 
-        console.log(error);
+    }catch(error){
+
+        console.error(error);
 
     }
 
